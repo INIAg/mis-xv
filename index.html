@@ -8,7 +8,7 @@
 
     <style>
         :root {
-            --lila-profundo: #1a0b2e; /* Fondo oscuro elegante */
+            --lila-profundo: #1a0b2e;
             --lila-bts: #A020F0;
             --rose-gold: #b76e79;
             --dorado: #d4af37;
@@ -18,6 +18,11 @@
         }
 
         * { box-sizing: border-box; }
+
+        /* Ocultamos el scroll inicial con esta clase */
+        body.no-scroll {
+            overflow: hidden;
+        }
 
         body {
             margin: 0;
@@ -70,13 +75,13 @@
             cursor: pointer;
             transition: all 0.4s ease;
             box-shadow: 0 0 15px rgba(183, 110, 121, 0.2);
+            text-decoration: none; /* Para que los enlaces <a> no tengan subrayado */
         }
         .btn-lujo:hover { background: var(--rose-gold); color: var(--lila-profundo); box-shadow: 0 0 30px rgba(183, 110, 121, 0.6); }
 
         /* --- HERO & PARALLAX --- */
         .hero {
             height: 100vh;
-            /* EFECTO PARALLAX AQUÍ */
             background-image: linear-gradient(rgba(26, 11, 46, 0.6), rgba(26, 11, 46, 0.9)), url('https://via.placeholder.com/1080x1920/2b1055/b76e79?text=FOTO+ELEGANTE+ZOÉ');
             background-attachment: fixed;
             background-position: center;
@@ -101,8 +106,8 @@
             margin: 20px auto;
             position: relative;
             overflow: hidden;
+            width: 90%; /* Para que no pegue en los bordes en móviles */
         }
-        /* Brillo sutil en el borde superior del cristal */
         .glass-card::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 2px;
             background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
@@ -113,7 +118,7 @@
         .glass-card h3 { color: var(--rose-gold); font-size: 1.8rem; margin-top: 0; font-family: 'Great Vibes', cursive; letter-spacing: 2px;}
 
         /* --- CONTADOR ELEGANTE --- */
-        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;}
         .unit { 
             background: rgba(0,0,0,0.3); border: 1px solid var(--rose-gold);
             padding: 15px; border-radius: 10px; min-width: 70px; text-align: center;
@@ -125,9 +130,61 @@
         section { padding: 80px 20px; text-align: center; position: relative; z-index: 10;}
         .seccion-oscura { background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4), transparent); }
 
-        /* Clase oculta inicial para el Intersection Observer */
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 1s ease-out, transform 1s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- PADRES Y PADRINOS --- */
+        .nombres-familia {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            max-width: 600px;
+            margin: auto;
+        }
+        .nombres-destacados {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--rose-gold);
+            display: block;
+            margin: 10px 0 25px 0;
+            text-shadow: 0 0 10px rgba(183, 110, 121, 0.3);
+        }
+
+        /* --- ITINERARIO MÓVIL (TIMELINE) --- */
+        .timeline {
+            position: relative;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px 10px;
+            text-align: left;
+        }
+        /* La línea vertical */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 20px;
+            width: 2px; height: 100%;
+            background: var(--rose-gold);
+        }
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+            padding-left: 50px;
+        }
+        .timeline-dot {
+            position: absolute;
+            top: 5px; left: 13px;
+            width: 16px; height: 16px;
+            background: var(--lila-profundo);
+            border: 2px solid var(--rose-gold);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 10px var(--rose-gold);
+        }
+        .timeline-content h4 { color: var(--dorado); margin: 0 0 5px 0; font-family: 'Great Vibes', cursive; font-size: 1.8rem; letter-spacing: 2px;}
+        .timeline-content p { margin: 0; font-size: 0.95rem; font-weight: 300; letter-spacing: 1px;}
 
         /* --- GALERÍA VIP --- */
         .carousel {
@@ -148,9 +205,7 @@
         footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; letter-spacing: 3px; color: #888; }
     </style>
 </head>
-<body>
-
-    <div id="splash-screen">
+<body class="no-scroll"> <div id="splash-screen">
         <div class="puerta puerta-izq" id="puertaIzq"></div>
         <div class="puerta puerta-der" id="puertaDer"></div>
         <div class="splash-content" id="splashContent">
@@ -180,6 +235,18 @@
     </section>
 
     <section>
+        <div class="fade-in nombres-familia">
+            <p>Con la bendición de Dios y en compañía de mis padres:</p>
+            <span class="nombres-destacados">Nombre del Padre <br>& Nombre de la Madre</span>
+            
+            <p>Y mis padrinos:</p>
+            <span class="nombres-destacados">Nombre del Padrino <br>& Nombre de la Madrina</span>
+            
+            <p>Tengo la inmensa alegría de invitarte a celebrar la magia de este día tan especial.</p>
+        </div>
+    </section>
+
+    <section class="seccion-oscura">
         <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem;">FALTAN PARA LA MAGIA</h2>
         <div class="timer fade-in">
             <div class="unit"><span id="days">00</span><small>DÍAS</small></div>
@@ -190,20 +257,62 @@
     </section>
 
     <section>
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 20px;">DÓNDE Y CUÁNDO</h2>
         <div class="glass-card fade-in">
             <h3>Ceremonia</h3>
             <p style="font-weight: 300; line-height: 1.8;">18:00 Horas<br>Parroquia de San Juan</p>
-            <a href="#" class="btn-lujo" style="display:inline-block; margin-top: 15px; padding: 10px 30px; font-size: 0.8rem;">Ubicación Vip</a>
+            <a href="URL_MAPS_AQUI" class="btn-lujo" style="display:inline-block; margin-top: 15px; padding: 10px 30px; font-size: 0.8rem;" target="_blank">Ubicación Vip</a>
         </div>
 
         <div class="glass-card fade-in" style="transition-delay: 0.2s;">
             <h3>Recepción</h3>
             <p style="font-weight: 300; line-height: 1.8;">20:00 Horas<br>Finca Maldonado</p>
-            <a href="#" class="btn-lujo" style="display:inline-block; margin-top: 15px; padding: 10px 30px; font-size: 0.8rem;">Ubicación Vip</a>
+            <a href="URL_MAPS_AQUI" class="btn-lujo" style="display:inline-block; margin-top: 15px; padding: 10px 30px; font-size: 0.8rem;" target="_blank">Ubicación Vip</a>
         </div>
     </section>
 
     <section class="seccion-oscura">
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">ITINERARIO MÁGICO</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>18:00 hrs</h4>
+                    <p>Ceremonia Religiosa ⛪</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>20:00 hrs</h4>
+                    <p>Recepción en Finca Maldonado 🥂</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>21:00 hrs</h4>
+                    <p>Cena de Gala 🍽️</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>22:00 hrs</h4>
+                    <p>El Vals ✨</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>23:00 hrs</h4>
+                    <p>Permission to Dance 🕺💃</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
         <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">SESIÓN EXCLUSIVA</h2>
         <div class="carousel fade-in">
             <div class="carousel-track" id="track">
@@ -214,11 +323,26 @@
         </div>
     </section>
 
+    <section class="seccion-oscura">
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">DETALLES IMPORTANTES</h2>
+        
+        <div class="glass-card fade-in" style="margin-bottom: 30px;">
+            <h3 style="color: var(--blanco);">Dress Code</h3>
+            <p style="font-weight: 300; font-size: 0.95rem; line-height: 1.6;"><strong>FORMAL / ETIQUETA RIGUROSA</strong></p>
+            <p style="font-weight: 300; font-size: 0.85rem; line-height: 1.6; color: #ccc;">Por favor, abstenerse de usar prendas de color <strong>Lila o Morado</strong>, ya que este color está reservado exclusivamente para la quinceañera.</p>
+        </div>
+
+        <div class="glass-card fade-in">
+            <h3 style="color: var(--blanco);">Lluvia de Sobres</h3>
+            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Tu presencia es mi regalo más grande en esta noche mágica. Sin embargo, si deseas tener un detalle adicional conmigo, habrá un buzón en la recepción para lluvia de sobres. ✉️💜</p>
+        </div>
+    </section>
+
     <section>
         <div class="glass-card fade-in">
             <h3 style="color: var(--dorado);">Confirmar Asistencia</h3>
             <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Será un honor compartir esta noche inolvidable contigo. Por favor, confirma antes del 1 de diciembre.</p>
-            <a href="https://wa.me/TUNUMERO" class="btn-lujo" style="display:inline-block; margin-top: 20px; border-color: var(--dorado); color: var(--dorado);">RSVP WhatsApp</a>
+            <a href="https://wa.me/52TUNUMERO?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Zoé%20💜" class="btn-lujo" style="display:inline-block; margin-top: 20px; border-color: var(--dorado); color: var(--dorado);" target="_blank">RSVP WhatsApp</a>
         </div>
     </section>
 
@@ -229,6 +353,9 @@
     <script>
         // --- ANIMACIÓN DE ENTRADA Y MÚSICA ---
         function abrirInvitacion() {
+            // Liberar el scroll
+            document.body.classList.remove('no-scroll');
+
             // Reproducir música
             document.getElementById('bg-music').play().catch(e => console.log(e));
             
@@ -241,14 +368,14 @@
                 document.getElementById('puertaDer').classList.add('abierta');
             }, 300);
 
-            // Quitar splash del DOM para poder hacer scroll
+            // Quitar splash del DOM para poder hacer scroll fluido
             setTimeout(() => {
                 document.getElementById('splash-screen').style.display = 'none';
                 iniciarEfectos(); // Arranca las partículas al entrar
             }, 1800);
         }
 
-        // --- ANIMACIONES AL HACER SCROLL (Aparición Mágica) ---
+        // --- ANIMACIONES AL HACER SCROLL ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -309,4 +436,6 @@
     </script>
 </body>
 </html>
+
+
 
