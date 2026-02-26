@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis XV - Zoé 💜</title>
+    <title>Mis XV - Zoé 🦋💜</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --lila-principal: #A020F0; /* BTS Purple */
-            --lila-fondo: #f4eeff;
-            --lila-oscuro: #6B3FA0;
-            --dorado-soft: #d4a373;
+            --lila-intenso: #A020F0;
+            --lila-medio: #C3B1E1;
+            --lila-claro: #F4EEFF;
+            --lila-pastel: #E6E6FA;
             --blanco: #ffffff;
+            --texto: #4A3B52;
         }
 
         * { box-sizing: border-box; }
@@ -22,86 +23,103 @@
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--lila-fondo);
-            color: #444;
+            background-color: var(--lila-claro);
+            color: var(--texto);
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        /* --- PANTALLA DE ENTRADA (Para la música) --- */
+        /* --- PANTALLA DE ENTRADA --- */
         #splash-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, var(--lila-oscuro), var(--lila-principal));
+            background: linear-gradient(135deg, var(--lila-medio), var(--lila-claro));
             z-index: 10000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
+            color: var(--lila-intenso);
             transition: opacity 1s ease;
         }
 
-        #splash-screen h2 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; margin-bottom: 10px; text-align: center; }
+        #splash-screen h2 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.5rem; margin-bottom: 5px; text-align: center; }
+        #splash-screen h1 { font-family: 'Great Vibes', cursive; font-size: 5rem; margin-top: 0; margin-bottom: 20px; text-shadow: 2px 2px 5px rgba(255,255,255,0.8); }
+        
         .btn-entrar {
             padding: 15px 40px;
-            background: white;
-            color: var(--lila-oscuro);
+            background: var(--lila-intenso);
+            color: white;
             border: none;
             border-radius: 50px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(160, 32, 240, 0.4);
             text-transform: uppercase;
-            margin-top: 20px;
+            letter-spacing: 2px;
+            transition: 0.3s;
         }
+        .btn-entrar:hover { transform: scale(1.05); background: #8a19d6; }
 
         /* --- SECCIONES --- */
-        section { padding: 80px 20px; text-align: center; }
+        section { padding: 60px 20px; text-align: center; }
 
-        /* HERO */
+        /* HERO (Fondo Principal) */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+            /* Aquí pones la foto principal de Zoé */
+            background: linear-gradient(rgba(195, 177, 225, 0.4), rgba(160, 32, 240, 0.3)), 
                         url('https://via.placeholder.com/1080x1920/E6E6FA/A020F0?text=FOTO+DE+ZOÉ') center/cover;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            color: white;
+            color: var(--blanco);
             text-align: center;
+            border-bottom: 5px solid var(--lila-medio);
         }
 
-        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 6rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero p { letter-spacing: 5px; font-size: 1.2rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 6.5rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        .hero p { letter-spacing: 5px; font-size: 1.2rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.3); text-transform: uppercase; }
 
         /* FRASE */
-        .quote-section { background: white; font-style: italic; color: var(--lila-oscuro); }
-        .quote-section p { max-width: 600px; margin: auto; font-size: 1.3rem; }
+        .quote-section { background: var(--blanco); font-style: italic; color: var(--lila-intenso); padding: 40px 20px; }
+        .quote-section p { max-width: 600px; margin: auto; font-size: 1.4rem; }
 
         /* CONTADOR */
-        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
-        .unit { background: var(--blanco); padding: 15px; border-radius: 10px; min-width: 70px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .unit span { display: block; font-size: 1.8rem; font-weight: bold; color: var(--lila-principal); }
+        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .unit { 
+            background: var(--lila-pastel); 
+            padding: 15px; 
+            border-radius: 15px; 
+            min-width: 75px; 
+            box-shadow: 0 4px 10px rgba(160, 32, 240, 0.1); 
+            border: 1px solid var(--lila-medio);
+        }
+        .unit span { display: block; font-size: 2rem; font-weight: bold; color: var(--lila-intenso); }
 
         /* TARJETAS DE INFORMACIÓN */
         .card {
-            background: white;
+            background: var(--blanco);
             max-width: 450px;
             margin: 20px auto;
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--lila-principal);
+            box-shadow: 0 10px 30px rgba(160, 32, 240, 0.1);
+            border-top: 5px solid var(--lila-medio);
         }
+
+        .card h3 { color: var(--lila-intenso); font-size: 1.5rem; margin-top: 0; }
 
         .btn-link {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 12px 30px;
-            background: var(--lila-principal);
+            background: var(--lila-intenso);
             color: white;
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
+            box-shadow: 0 4px 10px rgba(160, 32, 240, 0.3);
         }
 
         /* GALERÍA */
@@ -110,26 +128,38 @@
             max-width: 350px;
             margin: auto;
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(160, 32, 240, 0.2);
+            border: 4px solid var(--lila-pastel);
         }
-        .carousel-track { display: flex; transition: transform 0.5s ease; }
-        .carousel-img { min-width: 100%; height: 500px; background: #eee; object-fit: cover; }
+        .carousel-track { display: flex; transition: transform 0.6s ease-in-out; }
+        .carousel-img { min-width: 100%; height: 500px; object-fit: cover; }
 
         /* FOOTER */
-        footer { padding: 40px; background: var(--lila-oscuro); color: white; font-size: 0.8rem; text-align: center; }
+        footer { padding: 40px; background: var(--lila-intenso); color: white; font-size: 0.9rem; text-align: center; letter-spacing: 2px; }
 
-        /* LLUVIA DE CORAZONES */
-        .heart { position: fixed; color: var(--lila-principal); pointer-events: none; animation: fall linear forwards; z-index: 999; }
-        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+        /* LLUVIA DE MARIPOSAS 🦋 */
+        .butterfly { 
+            position: fixed; 
+            user-select: none; 
+            pointer-events: none; 
+            animation: flutter linear forwards; 
+            z-index: 999; 
+            filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.2));
+        }
+        @keyframes flutter { 
+            0% { transform: translateY(-10vh) translateX(0px) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(50vh) translateX(30px) rotate(15deg); opacity: 0.8; }
+            100% { transform: translateY(110vh) translateX(-30px) rotate(-15deg); opacity: 0; } 
+        }
     </style>
 </head>
 <body>
 
     <div id="splash-screen">
-        <h2>Bienvenido a la</h2>
-        <h1 style="font-family:'Great Vibes'; font-size: 4.5rem; margin-bottom: 10px;">Magic Shop</h1>
-        <button class="btn-entrar" onclick="init()">Abrir Invitación 💜</button>
+        <h2>Estás invitado a los XV de</h2>
+        <h1>Zoé</h1>
+        <button class="btn-entrar" onclick="init()">Abrir Invitación 🦋</button>
     </div>
 
     <audio id="bg-music" loop preload="auto">
@@ -137,18 +167,18 @@
     </audio>
 
     <header class="hero">
-        <p>MIS XV AÑOS</p>
+        <p>I PURPLE YOU 💜</p>
         <h1>Zoé</h1>
         <p>20 . DICIEMBRE . 2026</p>
     </header>
 
     <section class="quote-section">
-        <p>"Porque en la oscuridad, nosotros somos la luz del otro. I Purple You."</p>
-        <small>— BTS</small>
+        <p>"Porque en la oscuridad, nosotros somos la luz del otro."</p>
+        <h3 style="font-family:'Great Vibes', cursive; font-size: 2.5rem; margin-top: 10px;">BTS</h3>
     </section>
 
     <section>
-        <h2>Faltan para el gran día:</h2>
+        <h2 style="color: var(--lila-intenso); letter-spacing: 2px;">FALTAN PARA EL GRAN DÍA</h2>
         <div class="timer">
             <div class="unit"><span id="days">00</span>D</div>
             <div class="unit"><span id="hours">00</span>H</div>
@@ -161,59 +191,55 @@
         <div class="card">
             <h3>⛪ Ceremonia</h3>
             <p>18:00 Horas<br>Parroquia de San Juan</p>
-            <a href="#" class="btn-link">Ver Ubicación</a>
+            <a href="#" class="btn-link">Ver Mapa</a>
         </div>
 
         <div class="card">
             <h3>🎉 Recepción</h3>
             <p>20:00 Horas<br>Finca Maldonado</p>
-            <a href="#" class="btn-link">Ver Ubicación</a>
+            <a href="#" class="btn-link">Ver Mapa</a>
         </div>
     </section>
 
     <section>
-        <h2>Nuestra Galería</h2>
+        <h2 style="color: var(--lila-intenso); letter-spacing: 2px;">NUESTRA GALERÍA</h2>
         <div class="carousel">
             <div class="carousel-track" id="track">
-                <img src="https://via.placeholder.com/400x600/E6E6FA/6B3FA0?text=Sesión+Zoé+1" class="carousel-img">
-                <img src="https://via.placeholder.com/400x600/A020F0/FFFFFF?text=Sesión+Zoé+2" class="carousel-img">
-                <img src="https://via.placeholder.com/400x600/6B3FA0/FFFFFF?text=Sesión+Zoé+3" class="carousel-img">
+                <img src="https://via.placeholder.com/400x600/E6E6FA/A020F0?text=Foto+Zoé+1" class="carousel-img">
+                <img src="https://via.placeholder.com/400x600/C3B1E1/FFFFFF?text=Foto+Zoé+2" class="carousel-img">
+                <img src="https://via.placeholder.com/400x600/A020F0/FFFFFF?text=Foto+Zoé+3" class="carousel-img">
             </div>
         </div>
     </section>
 
     <section>
-        <div class="card" style="border-top-color: #25d366;">
-            <h3>Confirmar Asistencia</h3>
-            <p>Agradecemos confirmar tu presencia antes del 1 de diciembre.</p>
-            <a href="https://wa.me/TUNUMERO" class="btn-link" style="background:#25d366;">WhatsApp</a>
+        <div class="card" style="border-top-color: #C3B1E1;">
+            <h3>✉️ Confirmar Asistencia</h3>
+            <p>Me encantaría que compartieras este día tan especial conmigo. Confirma tu asistencia antes del 1 de diciembre.</p>
+            <a href="https://wa.me/TUNUMERO" class="btn-link" style="background:#8a19d6;">Confirmar por WhatsApp</a>
         </div>
     </section>
 
     <footer>
-        <p>ZOÉ 2026 | HECHO CON 💜</p>
+        <p>ZOÉ 2026 | HECHO CON 💜 Y 🦋</p>
     </footer>
 
     <script>
         function init() {
-            // Reproducir Música de forma segura
+            // Reproducir Música
             const audio = document.getElementById('bg-music');
-            audio.play().catch(error => {
-                console.log("Error al reproducir audio:", error);
-            });
+            audio.play().catch(error => console.log("Error de audio:", error));
             
-            // Quitar splash screen con transición
+            // Quitar pantalla de inicio
             const splash = document.getElementById('splash-screen');
             splash.style.opacity = '0';
-            setTimeout(() => {
-                splash.style.display = 'none';
-            }, 1000);
+            setTimeout(() => { splash.style.display = 'none'; }, 1000);
 
-            // Iniciar lluvia de corazones
-            setInterval(createHeart, 500);
+            // Iniciar mariposas
+            setInterval(createButterfly, 700);
         }
 
-        // Cuenta Regresiva (Ajusta la fecha del evento aquí)
+        // Cuenta Regresiva
         const target = new Date('Dec 20, 2026 18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -224,24 +250,25 @@
             document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
         }, 1000);
 
-        // Galería Automática
+        // Galería
         let index = 0;
         setInterval(() => {
             index = (index + 1) % 3;
             document.getElementById('track').style.transform = `translateX(-${index * 100}%)`;
-        }, 3000);
+        }, 3500);
 
-        // Lluvia de corazones
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerText = '💜';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
+        // Función de Mariposas
+        function createButterfly() {
+            const butterfly = document.createElement('div');
+            butterfly.classList.add('butterfly');
+            butterfly.innerText = '🦋';
+            butterfly.style.left = Math.random() * 100 + 'vw';
+            butterfly.style.fontSize = Math.random() * 15 + 15 + 'px'; // Tamaños variados
+            butterfly.style.animationDuration = Math.random() * 4 + 4 + 's'; // Velocidades diferentes
+            document.body.appendChild(butterfly);
+            setTimeout(() => butterfly.remove(), 8000);
         }
     </script>
 </body>
 </html>
+
