@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis XV - Zoé 🦋💜</title>
-    
+    <title>Mis XV - Zoé 🦋✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --lila-intenso: #A020F0;
-            --lila-medio: #C3B1E1;
-            --lila-claro: #F4EEFF;
-            --lila-pastel: #E6E6FA;
+            --lila-profundo: #1a0b2e; /* Fondo oscuro elegante */
+            --lila-bts: #A020F0;
+            --rose-gold: #b76e79;
+            --dorado: #d4af37;
             --blanco: #ffffff;
-            --texto: #4A3B52;
+            --cristal: rgba(255, 255, 255, 0.05);
+            --borde-cristal: rgba(255, 255, 255, 0.2);
         }
 
         * { box-sizing: border-box; }
@@ -23,250 +23,288 @@
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--lila-claro);
-            color: var(--texto);
-            scroll-behavior: smooth;
+            background-color: var(--lila-profundo);
+            color: var(--blanco);
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* --- PANTALLA DE ENTRADA --- */
+        /* --- SPLASH SCREEN (Puertas BTS) --- */
         #splash-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, var(--lila-medio), var(--lila-claro));
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             z-index: 10000;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--lila-intenso);
-            transition: opacity 1s ease;
+            justify-content: center; align-items: center;
+            overflow: hidden;
         }
-
-        #splash-screen h2 { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.5rem; margin-bottom: 5px; text-align: center; }
-        #splash-screen h1 { font-family: 'Great Vibes', cursive; font-size: 5rem; margin-top: 0; margin-bottom: 20px; text-shadow: 2px 2px 5px rgba(255,255,255,0.8); }
+        .puerta {
+            position: absolute; top: 0; width: 50%; height: 100%;
+            background: linear-gradient(to bottom, #11051f, var(--lila-profundo));
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 10001;
+            border-right: 1px solid var(--rose-gold);
+        }
+        .puerta-izq { left: 0; border-right: 2px solid var(--rose-gold); }
+        .puerta-der { right: 0; border-left: 2px solid var(--rose-gold); }
         
-        .btn-entrar {
-            padding: 15px 40px;
-            background: var(--lila-intenso);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(160, 32, 240, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
+        .puerta-izq.abierta { transform: translateX(-100%); }
+        .puerta-der.abierta { transform: translateX(100%); }
+
+        .splash-content {
+            z-index: 10002;
+            text-align: center;
+            transition: opacity 0.5s ease;
         }
-        .btn-entrar:hover { transform: scale(1.05); background: #8a19d6; }
+        .splash-content h1 { font-family: 'Great Vibes', cursive; font-size: 5rem; color: var(--rose-gold); margin: 0 0 20px 0; text-shadow: 0 0 20px rgba(183, 110, 121, 0.5); }
+        
+        .btn-lujo {
+            padding: 15px 40px;
+            background: transparent;
+            color: var(--rose-gold);
+            border: 2px solid var(--rose-gold);
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px rgba(183, 110, 121, 0.2);
+        }
+        .btn-lujo:hover { background: var(--rose-gold); color: var(--lila-profundo); box-shadow: 0 0 30px rgba(183, 110, 121, 0.6); }
 
-        /* --- SECCIONES --- */
-        section { padding: 60px 20px; text-align: center; }
-
-        /* HERO (Fondo Principal) */
+        /* --- HERO & PARALLAX --- */
         .hero {
             height: 100vh;
-            /* Aquí pones la foto principal de Zoé */
-            background: linear-gradient(rgba(195, 177, 225, 0.4), rgba(160, 32, 240, 0.3)), 
-                        url('https://via.placeholder.com/1080x1920/E6E6FA/A020F0?text=FOTO+DE+ZOÉ') center/cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            color: var(--blanco);
+            /* EFECTO PARALLAX AQUÍ */
+            background-image: linear-gradient(rgba(26, 11, 46, 0.6), rgba(26, 11, 46, 0.9)), url('https://via.placeholder.com/1080x1920/2b1055/b76e79?text=FOTO+ELEGANTE+ZOÉ');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center;
-            border-bottom: 5px solid var(--lila-medio);
+            position: relative;
         }
+        .hero p { letter-spacing: 8px; color: var(--rose-gold); font-size: 1rem; text-transform: uppercase; margin-bottom: -10px;}
+        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 7rem; margin: 0; text-shadow: 0 0 30px rgba(255,255,255,0.3); }
 
-        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 6.5rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
-        .hero p { letter-spacing: 5px; font-size: 1.2rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.3); text-transform: uppercase; }
-
-        /* FRASE */
-        .quote-section { background: var(--blanco); font-style: italic; color: var(--lila-intenso); padding: 40px 20px; }
-        .quote-section p { max-width: 600px; margin: auto; font-size: 1.4rem; }
-
-        /* CONTADOR */
-        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
-        .unit { 
-            background: var(--lila-pastel); 
-            padding: 15px; 
-            border-radius: 15px; 
-            min-width: 75px; 
-            box-shadow: 0 4px 10px rgba(160, 32, 240, 0.1); 
-            border: 1px solid var(--lila-medio);
-        }
-        .unit span { display: block; font-size: 2rem; font-weight: bold; color: var(--lila-intenso); }
-
-        /* TARJETAS DE INFORMACIÓN */
-        .card {
-            background: var(--blanco);
+        /* --- EFECTO CRISTAL (GLASSMORPHISM) --- */
+        .glass-card {
+            background: var(--cristal);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--borde-cristal);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 40px;
             max-width: 450px;
             margin: 20px auto;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(160, 32, 240, 0.1);
-            border-top: 5px solid var(--lila-medio);
-        }
-
-        .card h3 { color: var(--lila-intenso); font-size: 1.5rem; margin-top: 0; }
-
-        .btn-link {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 12px 30px;
-            background: var(--lila-intenso);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(160, 32, 240, 0.3);
-        }
-
-        /* GALERÍA */
-        .carousel {
             position: relative;
-            max-width: 350px;
-            margin: auto;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(160, 32, 240, 0.2);
-            border: 4px solid var(--lila-pastel);
         }
-        .carousel-track { display: flex; transition: transform 0.6s ease-in-out; }
+        /* Brillo sutil en el borde superior del cristal */
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
+            animation: brillo 4s infinite linear;
+        }
+        @keyframes brillo { 100% { left: 200%; } }
+
+        .glass-card h3 { color: var(--rose-gold); font-size: 1.8rem; margin-top: 0; font-family: 'Great Vibes', cursive; letter-spacing: 2px;}
+
+        /* --- CONTADOR ELEGANTE --- */
+        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .unit { 
+            background: rgba(0,0,0,0.3); border: 1px solid var(--rose-gold);
+            padding: 15px; border-radius: 10px; min-width: 70px; text-align: center;
+        }
+        .unit span { display: block; font-size: 2rem; font-weight: bold; color: var(--blanco); text-shadow: 0 0 10px var(--rose-gold); }
+        .unit small { font-size: 0.7rem; letter-spacing: 2px; color: #ccc; }
+
+        /* --- SECCIONES Y ANIMACIONES AL HACER SCROLL --- */
+        section { padding: 80px 20px; text-align: center; position: relative; z-index: 10;}
+        .seccion-oscura { background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4), transparent); }
+
+        /* Clase oculta inicial para el Intersection Observer */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 1s ease-out, transform 1s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* --- GALERÍA VIP --- */
+        .carousel {
+            position: relative; max-width: 350px; margin: auto; overflow: hidden;
+            border-radius: 20px; border: 2px solid var(--rose-gold);
+            box-shadow: 0 0 30px rgba(183, 110, 121, 0.3);
+        }
+        .carousel-track { display: flex; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .carousel-img { min-width: 100%; height: 500px; object-fit: cover; }
 
-        /* FOOTER */
-        footer { padding: 40px; background: var(--lila-intenso); color: white; font-size: 0.9rem; text-align: center; letter-spacing: 2px; }
-
-        /* LLUVIA DE MARIPOSAS 🦋 */
-        .butterfly { 
-            position: fixed; 
-            user-select: none; 
-            pointer-events: none; 
-            animation: flutter linear forwards; 
-            z-index: 999; 
-            filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.2));
-        }
-        @keyframes flutter { 
-            0% { transform: translateY(-10vh) translateX(0px) rotate(0deg); opacity: 1; }
-            50% { transform: translateY(50vh) translateX(30px) rotate(15deg); opacity: 0.8; }
-            100% { transform: translateY(110vh) translateX(-30px) rotate(-15deg); opacity: 0; } 
-        }
+        /* --- POLVO DE ESTRELLAS Y MARIPOSAS --- */
+        .particula { position: fixed; background: white; border-radius: 50%; pointer-events: none; opacity: 0; animation: flotar 5s infinite ease-in; z-index: 1; box-shadow: 0 0 5px white;}
+        .mariposa { position: fixed; font-size: 20px; pointer-events: none; opacity: 0; animation: volar 10s infinite linear; z-index: 2; filter: drop-shadow(0 0 5px var(--lila-bts)); }
+        
+        @keyframes flotar { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 50% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-100px) scale(1.5); } }
+        @keyframes volar { 0% { opacity: 0; transform: translate(0, 10vh) rotate(-10deg) scale(0.8); } 20% { opacity: 0.6; } 80% { opacity: 0.6; } 100% { opacity: 0; transform: translate(50vw, -110vh) rotate(20deg) scale(1.2); } }
+        
+        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; letter-spacing: 3px; color: #888; }
     </style>
 </head>
 <body>
 
     <div id="splash-screen">
-        <h2>Estás invitado a los XV de</h2>
-        <h1>Zoé</h1>
-        <button class="btn-entrar" onclick="init()">Abrir Invitación 🦋</button>
+        <div class="puerta puerta-izq" id="puertaIzq"></div>
+        <div class="puerta puerta-der" id="puertaDer"></div>
+        <div class="splash-content" id="splashContent">
+            <h2 style="font-weight: 300; letter-spacing: 3px; font-size: 1.2rem;">BIENVENIDOS A LOS XV DE</h2>
+            <h1>Zoé</h1>
+            <button class="btn-lujo" onclick="abrirInvitacion()">Abrir Invitación ✨</button>
+        </div>
     </div>
 
     <audio id="bg-music" loop preload="auto">
         <source src="musica-bts.mp3" type="audio/mpeg">
     </audio>
 
+    <div id="magia"></div>
+
     <header class="hero">
-        <p>I PURPLE YOU 💜</p>
-        <h1>Zoé</h1>
-        <p>20 . DICIEMBRE . 2026</p>
+        <p class="fade-in">I PURPLE YOU</p>
+        <h1 class="fade-in" style="transition-delay: 0.2s;">Zoé</h1>
+        <p class="fade-in" style="transition-delay: 0.4s;">20 . DICIEMBRE . 2026</p>
     </header>
 
-    <section class="quote-section">
-        <p>"Porque en la oscuridad, nosotros somos la luz del otro."</p>
-        <h3 style="font-family:'Great Vibes', cursive; font-size: 2.5rem; margin-top: 10px;">BTS</h3>
-    </section>
-
-    <section>
-        <h2 style="color: var(--lila-intenso); letter-spacing: 2px;">FALTAN PARA EL GRAN DÍA</h2>
-        <div class="timer">
-            <div class="unit"><span id="days">00</span>D</div>
-            <div class="unit"><span id="hours">00</span>H</div>
-            <div class="unit"><span id="minutes">00</span>M</div>
-            <div class="unit"><span id="seconds">00</span>S</div>
+    <section class="seccion-oscura">
+        <div class="fade-in" style="max-width: 600px; margin: auto; font-style: italic; font-size: 1.3rem; color: #ccc;">
+            <p>"Porque en la oscuridad, nosotros somos la luz del otro."</p>
+            <h3 style="font-family:'Great Vibes', cursive; font-size: 2.5rem; color: var(--rose-gold); margin-top: 10px;">BTS</h3>
         </div>
     </section>
 
     <section>
-        <div class="card">
-            <h3>⛪ Ceremonia</h3>
-            <p>18:00 Horas<br>Parroquia de San Juan</p>
-            <a href="#" class="btn-link">Ver Mapa</a>
-        </div>
-
-        <div class="card">
-            <h3>🎉 Recepción</h3>
-            <p>20:00 Horas<br>Finca Maldonado</p>
-            <a href="#" class="btn-link">Ver Mapa</a>
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem;">FALTAN PARA LA MAGIA</h2>
+        <div class="timer fade-in">
+            <div class="unit"><span id="days">00</span><small>DÍAS</small></div>
+            <div class="unit"><span id="hours">00</span><small>HRS</small></div>
+            <div class="unit"><span id="minutes">00</span><small>MIN</small></div>
+            <div class="unit"><span id="seconds">00</span><small>SEG</small></div>
         </div>
     </section>
 
     <section>
-        <h2 style="color: var(--lila-intenso); letter-spacing: 2px;">NUESTRA GALERÍA</h2>
-        <div class="carousel">
+        <div class="glass-card fade-in">
+            <h3>Ceremonia</h3>
+            <p style="font-weight: 300; line-height: 1.8;">18:00 Horas<br>Parroquia de San Juan</p>
+            <a href="#" class="btn-lujo" style="display:inline-block; margin-top: 15px; padding: 10px 30px; font-size: 0.8rem;">Ubicación Vip</a>
+        </div>
+
+        <div class="glass-card fade-in" style="transition-delay: 0.2s;">
+            <h3>Recepción</h3>
+            <p style="font-weight: 300; line-height: 1.8;">20:00 Horas<br>Finca Maldonado</p>
+            <a href="#" class="btn-lujo" style="display:inline-block; margin-top: 15px; padding: 10px 30px; font-size: 0.8rem;">Ubicación Vip</a>
+        </div>
+    </section>
+
+    <section class="seccion-oscura">
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">SESIÓN EXCLUSIVA</h2>
+        <div class="carousel fade-in">
             <div class="carousel-track" id="track">
-                <img src="https://via.placeholder.com/400x600/E6E6FA/A020F0?text=Foto+Zoé+1" class="carousel-img">
-                <img src="https://via.placeholder.com/400x600/C3B1E1/FFFFFF?text=Foto+Zoé+2" class="carousel-img">
-                <img src="https://via.placeholder.com/400x600/A020F0/FFFFFF?text=Foto+Zoé+3" class="carousel-img">
+                <img src="https://via.placeholder.com/400x600/1a0b2e/b76e79?text=Sesión+Zoé+1" class="carousel-img">
+                <img src="https://via.placeholder.com/400x600/2b1055/d4af37?text=Sesión+Zoé+2" class="carousel-img">
+                <img src="https://via.placeholder.com/400x600/11051f/b76e79?text=Sesión+Zoé+3" class="carousel-img">
             </div>
         </div>
     </section>
 
     <section>
-        <div class="card" style="border-top-color: #C3B1E1;">
-            <h3>✉️ Confirmar Asistencia</h3>
-            <p>Me encantaría que compartieras este día tan especial conmigo. Confirma tu asistencia antes del 1 de diciembre.</p>
-            <a href="https://wa.me/TUNUMERO" class="btn-link" style="background:#8a19d6;">Confirmar por WhatsApp</a>
+        <div class="glass-card fade-in">
+            <h3 style="color: var(--dorado);">Confirmar Asistencia</h3>
+            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Será un honor compartir esta noche inolvidable contigo. Por favor, confirma antes del 1 de diciembre.</p>
+            <a href="https://wa.me/TUNUMERO" class="btn-lujo" style="display:inline-block; margin-top: 20px; border-color: var(--dorado); color: var(--dorado);">RSVP WhatsApp</a>
         </div>
     </section>
 
     <footer>
-        <p>ZOÉ 2026 | HECHO CON 💜 Y 🦋</p>
+        <p>ZOÉ 2026 | MAGIC SHOP ✨</p>
     </footer>
 
     <script>
-        function init() {
-            // Reproducir Música
-            const audio = document.getElementById('bg-music');
-            audio.play().catch(error => console.log("Error de audio:", error));
+        // --- ANIMACIÓN DE ENTRADA Y MÚSICA ---
+        function abrirInvitacion() {
+            // Reproducir música
+            document.getElementById('bg-music').play().catch(e => console.log(e));
             
-            // Quitar pantalla de inicio
-            const splash = document.getElementById('splash-screen');
-            splash.style.opacity = '0';
-            setTimeout(() => { splash.style.display = 'none'; }, 1000);
+            // Ocultar texto
+            document.getElementById('splashContent').style.opacity = '0';
+            
+            // Abrir Puertas
+            setTimeout(() => {
+                document.getElementById('puertaIzq').classList.add('abierta');
+                document.getElementById('puertaDer').classList.add('abierta');
+            }, 300);
 
-            // Iniciar mariposas
-            setInterval(createButterfly, 700);
+            // Quitar splash del DOM para poder hacer scroll
+            setTimeout(() => {
+                document.getElementById('splash-screen').style.display = 'none';
+                iniciarEfectos(); // Arranca las partículas al entrar
+            }, 1800);
         }
 
-        // Cuenta Regresiva
+        // --- ANIMACIONES AL HACER SCROLL (Aparición Mágica) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+        // --- CUENTA REGRESIVA ---
         const target = new Date('Dec 20, 2026 18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = target - now;
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
         }, 1000);
 
-        // Galería
+        // --- GALERÍA VIP ---
         let index = 0;
         setInterval(() => {
             index = (index + 1) % 3;
             document.getElementById('track').style.transform = `translateX(-${index * 100}%)`;
         }, 3500);
 
-        // Función de Mariposas
-        function createButterfly() {
-            const butterfly = document.createElement('div');
-            butterfly.classList.add('butterfly');
-            butterfly.innerText = '🦋';
-            butterfly.style.left = Math.random() * 100 + 'vw';
-            butterfly.style.fontSize = Math.random() * 15 + 15 + 'px'; // Tamaños variados
-            butterfly.style.animationDuration = Math.random() * 4 + 4 + 's'; // Velocidades diferentes
-            document.body.appendChild(butterfly);
-            setTimeout(() => butterfly.remove(), 8000);
+        // --- POLVO DE ESTRELLAS Y MARIPOSAS ---
+        function iniciarEfectos() {
+            const contenedor = document.getElementById('magia');
+            
+            // Crear Polvo de Estrellas
+            setInterval(() => {
+                const particula = document.createElement('div');
+                particula.classList.add('particula');
+                particula.style.left = Math.random() * 100 + 'vw';
+                particula.style.top = (Math.random() * 100 + 10) + 'vh';
+                particula.style.width = Math.random() * 3 + 1 + 'px';
+                particula.style.height = particula.style.width;
+                particula.style.animationDuration = Math.random() * 3 + 3 + 's';
+                contenedor.appendChild(particula);
+                setTimeout(() => particula.remove(), 6000);
+            }, 200);
+
+            // Crear Mariposas Lilas
+            setInterval(() => {
+                const mariposa = document.createElement('div');
+                mariposa.classList.add('mariposa');
+                mariposa.innerHTML = '🦋';
+                mariposa.style.left = Math.random() * 100 + 'vw';
+                mariposa.style.top = '100vh';
+                mariposa.style.animationDuration = Math.random() * 5 + 8 + 's';
+                contenedor.appendChild(mariposa);
+                setTimeout(() => mariposa.remove(), 13000);
+            }, 1500);
         }
     </script>
 </body>
