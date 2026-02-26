@@ -56,62 +56,124 @@
             height: 120px;
             background-color: var(--rose-gold);
             box-shadow: 0 0 20px rgba(183, 110, 121, 0.6);
-            z-index: 10003;
+            z-index: 10002; 
         }
-        
         .puerta-izq .bts-logo-mitad {
-            right: 15px; /* Separación del centro */
-            /* Dibuja el trapecio izquierdo de BTS */
-            clip-path: polygon(100% 0, 100% 100%, 15% 85%, 15% 15%);
+            right: 15px; 
+            clip-path: polygon(100% 0, 100% 100%, 0% 85%, 0% 15%);
         }
-        
         .puerta-der .bts-logo-mitad {
-            left: 15px; /* Separación del centro */
-            /* Dibuja el trapecio derecho de BTS */
-            clip-path: polygon(0 0, 0 100%, 85% 85%, 85% 15%);
+            left: 15px; 
+            clip-path: polygon(0 0, 0 100%, 100% 85%, 100% 15%);
         }
 
+        /* --- CONTENIDO INICIAL (ARMY BOMB) --- */
         .splash-content {
-            z-index: 10002; text-align: center; transition: opacity 0.5s ease;
-        }
-        .splash-content h1 { 
-            font-family: 'Great Vibes', cursive; font-size: 5rem; 
-            color: var(--rose-gold); margin: 0 0 10px 0; 
-            text-shadow: 0 0 20px rgba(183, 110, 121, 0.5); 
+            z-index: 10005; 
+            text-align: center; transition: opacity 0.5s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* --- AVISO AUDIO --- */
-        .aviso-audio {
+        /* --- TU CSS DE LA ARMY BOMB ADAPTADO --- */
+        .army-bomb-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .army-bomb-container:hover {
+            transform: scale(1.05);
+        }
+
+        .army-bomb {
+            width: 140px;
+            height: 140px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: light-up 2s infinite ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .handle {
+            width: 40px;
+            height: 140px;
+            background-color: #1a1a1a;
+            position: relative;
+            margin-top: -15px; /* Para que se meta debajo de la esfera blanca */
+            z-index: 1;
+            border-radius: 0 0 10px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 35px; /* Empuja el logo de BTS hacia abajo */
+        }
+
+        /* Antena roja superior */
+        .antenna {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 25px;
+            height: 8px;
+            background-color: #1a1a1a;
+            transform: rotate(45deg);
+            z-index: 0;
+        }
+        .antenna::after {
+            content: "";
+            position: absolute;
+            top: -3px;
+            right: -2px;
+            width: 5px;
+            height: 7px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        /* Tu diseño del Logo BTS en el mango */
+        .bts-logo-handle {
+            display: flex;
+            gap: 5px;
+        }
+        .trapecio {
+            border-bottom: 12px solid white;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            height: 0;
+            width: 10px;
+        }
+        .trapecio.izq { transform: rotate(90deg); }
+        .trapecio.der { transform: rotate(-90deg); }
+
+        @keyframes light-up {
+            0%   { box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.8); }
+            50%  { box-shadow: 0px 0px 60px 25px rgba(255, 255, 255, 1); }
+            100% { box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.8); }
+        }
+
+        /* Texto sutil debajo de la Army Bomb */
+        .instruccion-entrar {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: #ccc;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 300;
-        }
-        
-        .btn-lujo {
-            padding: 15px 40px; background: transparent; color: var(--rose-gold);
-            border: 2px solid var(--rose-gold); border-radius: 50px;
-            font-family: 'Montserrat', sans-serif; font-weight: 600;
-            letter-spacing: 3px; text-transform: uppercase; cursor: pointer;
-            transition: all 0.4s ease; box-shadow: 0 0 15px rgba(183, 110, 121, 0.2);
-            text-decoration: none; position: relative; z-index: 100;
-        }
-        .btn-lujo:hover { 
-            background: var(--rose-gold); color: var(--lila-profundo); 
-            box-shadow: 0 0 30px rgba(183, 110, 121, 0.6); 
-        }
-
-        /* --- ANIMACIÓN DE LATIDO --- */
-        .btn-latido {
+            letter-spacing: 3px;
+            margin-top: 40px;
+            text-transform: uppercase;
             animation: latidoElegante 2s infinite ease-in-out;
+            pointer-events: none;
         }
         
         @keyframes latidoElegante {
-            0% { transform: scale(1); box-shadow: 0 0 15px rgba(183, 110, 121, 0.2); }
-            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(183, 110, 121, 0.8); }
-            100% { transform: scale(1); box-shadow: 0 0 15px rgba(183, 110, 121, 0.2); }
+            0% { transform: scale(1); opacity: 0.6;}
+            50% { transform: scale(1.05); opacity: 1;}
+            100% { transform: scale(1); opacity: 0.6;}
         }
 
         /* --- HERO --- */
@@ -155,11 +217,9 @@
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 1s ease-out, transform 1s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- PADRES Y PADRINOS --- */
         .nombres-familia { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1rem; line-height: 1.8; color: #e0e0e0; max-width: 600px; margin: auto; }
         .nombres-destacados { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--rose-gold); display: block; margin: 10px 0 25px 0; text-shadow: 0 0 10px rgba(183, 110, 121, 0.3); }
 
-        /* --- ITINERARIO MÓVIL --- */
         .timeline { position: relative; max-width: 400px; margin: 40px auto; padding: 20px 10px; text-align: left; }
         .timeline::before { content: ''; position: absolute; top: 0; left: 20px; width: 2px; height: 100%; background: var(--rose-gold); }
         .timeline-item { margin-bottom: 40px; position: relative; padding-left: 50px; }
@@ -167,7 +227,6 @@
         .timeline-content h4 { color: var(--dorado); margin: 0 0 5px 0; font-family: 'Great Vibes', cursive; font-size: 1.8rem; letter-spacing: 2px;}
         .timeline-content p { margin: 0; font-size: 0.95rem; font-weight: 300; letter-spacing: 1px;}
 
-        /* --- CARROUSEL VIP --- */
         .carousel { position: relative; max-width: 350px; margin: auto; overflow: hidden; border-radius: 20px; border: 2px solid var(--rose-gold); box-shadow: 0 0 30px rgba(183, 110, 121, 0.3); }
         .carousel-track { display: flex; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .carousel-img { min-width: 100%; height: 500px; object-fit: cover; }
@@ -177,7 +236,12 @@
         
         .particula { position: absolute; background: white; border-radius: 50%; pointer-events: none; opacity: 0; animation: flotar 5s infinite ease-in; box-shadow: 0 0 10px white;}
         .mariposa { position: absolute; font-size: 20px; pointer-events: none; opacity: 0; animation: volar 10s infinite linear; filter: drop-shadow(0 0 5px var(--lila-bts)); }
-        .corazon-bts { position: absolute; font-size: 18px; pointer-events: none; opacity: 0; animation: corazon-pulsante-vuela 9s infinite linear; color: var(--lila-bts); filter: drop-shadow(0 0 8px var(--lila-bts)); }
+        
+        .corazon-bts { 
+            position: absolute; font-size: 22px; pointer-events: none; opacity: 0; 
+            animation: corazon-pulsante-vuela 9s infinite linear; color: var(--lila-bts); 
+            filter: drop-shadow(0 0 8px var(--lila-bts)); 
+        }
 
         .petal { position: fixed; width: 100%; top: -50px; left: 0; text-align: left; pointer-events: none; z-index: 9999; }
         .petal span { display: inline-block; margin: 0 1.5%; overflow: hidden; width: 5px; height: 5px; border-radius: 200px 10px 200px 200px; background: linear-gradient(to bottom, #e0b0ff, #A020F0); z-index: 1; transform: skewX(30deg); backface-visibility: visible; animation: fallingSakura1 8s ease infinite; }
@@ -217,7 +281,15 @@
         @keyframes fallingSakura1 { 0% { transform: translate3d(0,0,0) rotateX(0deg); opacity: 1; } 100% { transform: translate3d(400px,1200px,0px) rotateX(-290deg); opacity: 0.1; } }
         @keyframes fallingSakura2 { 0% { transform: translate3d(0,0,0) rotateX(-20deg); opacity: 1; } 100% { transform: translate3d(200px,1200px,0px) rotateX(-70deg); opacity: 0.1; } }
         @keyframes fallingSakura3 { 0% { transform: translate3d(0,0,0) rotateX(90deg); opacity: 1; } 100% { transform: translate3d(500px,1200px,0px) rotateX(290deg); opacity: 0; } }
-        @keyframes corazon-pulsante-vuela { 0% { opacity: 0; transform: translate(0, 100vh) scale(1) rotate(0deg); } 10% { opacity: 1; } 50% { transform: translate(50vw, 50vh) scale(1.3) rotate(45deg); filter: drop-shadow(0 0 12px var(--lila-bts)); } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(100vw, 0vh) scale(1) rotate(90deg); } }
+        
+        @keyframes corazon-pulsante-vuela { 
+            0% { opacity: 0; transform: translate(0, 100vh) scale(1) rotate(0deg); } 
+            10% { opacity: 1; } 
+            50% { transform: translate(50vw, 50vh) scale(1.3) rotate(45deg); filter: drop-shadow(0 0 12px var(--lila-bts)); } 
+            80% { opacity: 1; } 
+            100% { opacity: 0; transform: translate(100vw, -10vh) scale(1) rotate(90deg); } 
+        }
+        
         @keyframes flotar { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 50% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-100px) scale(1.5); } }
         @keyframes volar { 0% { opacity: 0; transform: translate(0, 10vh) rotate(-10deg) scale(0.8); } 20% { opacity: 0.6; } 80% { opacity: 0.6; } 100% { opacity: 0; transform: translate(50vw, -110vh) rotate(20deg) scale(1.2); } }
 
@@ -234,10 +306,19 @@
             <div class="bts-logo-mitad"></div>
         </div>
         <div class="splash-content" id="splashContent">
-            <h2 style="font-weight: 300; letter-spacing: 3px; font-size: 1.2rem;">BIENVENIDOS A LOS XV DE</h2>
-            <h1>Zoé</h1>
-            <p class="aviso-audio">🎧 Enciende tu volumen para una experiencia mágica</p>
-            <button class="btn-lujo btn-latido" onclick="abrirInvitacion()">Abrir Invitación ✨</button>
+            
+            <div class="army-bomb-container" onclick="abrirInvitacion()">
+                <div class="army-bomb"></div>
+                <div class="handle">
+                    <div class="antenna"></div>
+                    <div class="bts-logo-handle">
+                        <div class="trapecio izq"></div>
+                        <div class="trapecio der"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="instruccion-entrar">🎧 Toca la Army Bomb para encender la magia ✨</p>
         </div>
     </div>
 
@@ -384,14 +465,12 @@
             const contenedor = document.getElementById('magia');
             const petalosContainer = document.getElementById('petalos-container');
             
-            // Activar pétalos lilas
             petalosContainer.style.display = 'block';
             for (let i = 0; i < 35; i++) {
                 const span = document.createElement('span');
                 petalosContainer.appendChild(span);
             }
 
-            // Polvo de estrellas
             setInterval(() => {
                 const particula = document.createElement('div');
                 particula.classList.add('particula');
@@ -404,7 +483,6 @@
                 setTimeout(() => particula.remove(), 7000);
             }, 180);
 
-            // Mariposas
             setInterval(() => {
                 const mariposa = document.createElement('div');
                 mariposa.classList.add('mariposa');
@@ -416,13 +494,12 @@
                 setTimeout(() => mariposa.remove(), 14000);
             }, 1800);
 
-            // Corazones BTS
             setInterval(() => {
                 const btsCorazon = document.createElement('div');
                 btsCorazon.classList.add('corazon-bts');
                 btsCorazon.innerHTML = '💜'; 
-                btsCorazon.style.left = '0vw'; 
-                btsCorazon.style.top = '100vh'; 
+                btsCorazon.style.left = '-5vw'; 
+                btsCorazon.style.top = '0vh'; 
                 btsCorazon.style.animationDuration = Math.random() * 3 + 8 + 's';
                 contenedor.appendChild(btsCorazon);
                 setTimeout(() => btsCorazon.remove(), 11000);
