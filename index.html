@@ -47,13 +47,47 @@
         .puerta-izq.abierta { transform: translateX(-100%); }
         .puerta-der.abierta { transform: translateX(100%); }
 
+        /* --- LOGO BTS DIVIDIDO EN PUERTAS --- */
+        .bts-logo-mitad {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 120px;
+            background-color: var(--rose-gold);
+            box-shadow: 0 0 20px rgba(183, 110, 121, 0.6);
+            z-index: 10003;
+        }
+        
+        .puerta-izq .bts-logo-mitad {
+            right: 15px; /* Separación del centro */
+            /* Dibuja el trapecio izquierdo de BTS */
+            clip-path: polygon(100% 0, 100% 100%, 15% 85%, 15% 15%);
+        }
+        
+        .puerta-der .bts-logo-mitad {
+            left: 15px; /* Separación del centro */
+            /* Dibuja el trapecio derecho de BTS */
+            clip-path: polygon(0 0, 0 100%, 85% 85%, 85% 15%);
+        }
+
         .splash-content {
             z-index: 10002; text-align: center; transition: opacity 0.5s ease;
         }
         .splash-content h1 { 
             font-family: 'Great Vibes', cursive; font-size: 5rem; 
-            color: var(--rose-gold); margin: 0 0 20px 0; 
+            color: var(--rose-gold); margin: 0 0 10px 0; 
             text-shadow: 0 0 20px rgba(183, 110, 121, 0.5); 
+        }
+
+        /* --- AVISO AUDIO --- */
+        .aviso-audio {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            color: #ccc;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-weight: 300;
         }
         
         .btn-lujo {
@@ -67,6 +101,17 @@
         .btn-lujo:hover { 
             background: var(--rose-gold); color: var(--lila-profundo); 
             box-shadow: 0 0 30px rgba(183, 110, 121, 0.6); 
+        }
+
+        /* --- ANIMACIÓN DE LATIDO --- */
+        .btn-latido {
+            animation: latidoElegante 2s infinite ease-in-out;
+        }
+        
+        @keyframes latidoElegante {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(183, 110, 121, 0.2); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(183, 110, 121, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(183, 110, 121, 0.2); }
         }
 
         /* --- HERO --- */
@@ -182,12 +227,17 @@
 <body class="no-scroll">
 
     <div id="splash-screen">
-        <div class="puerta puerta-izq" id="puertaIzq"></div>
-        <div class="puerta puerta-der" id="puertaDer"></div>
+        <div class="puerta puerta-izq" id="puertaIzq">
+            <div class="bts-logo-mitad"></div>
+        </div>
+        <div class="puerta puerta-der" id="puertaDer">
+            <div class="bts-logo-mitad"></div>
+        </div>
         <div class="splash-content" id="splashContent">
             <h2 style="font-weight: 300; letter-spacing: 3px; font-size: 1.2rem;">BIENVENIDOS A LOS XV DE</h2>
             <h1>Zoé</h1>
-            <button class="btn-lujo" onclick="abrirInvitacion()">Abrir Invitación ✨</button>
+            <p class="aviso-audio">🎧 Enciende tu volumen para una experiencia mágica</p>
+            <button class="btn-lujo btn-latido" onclick="abrirInvitacion()">Abrir Invitación ✨</button>
         </div>
     </div>
 
