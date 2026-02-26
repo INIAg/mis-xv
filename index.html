@@ -19,7 +19,6 @@
 
         * { box-sizing: border-box; }
 
-        /* Ocultamos el scroll inicial con esta clase */
         body.no-scroll {
             overflow: hidden;
         }
@@ -75,7 +74,7 @@
             cursor: pointer;
             transition: all 0.4s ease;
             box-shadow: 0 0 15px rgba(183, 110, 121, 0.2);
-            text-decoration: none; /* Para que los enlaces <a> no tengan subrayado */
+            text-decoration: none;
         }
         .btn-lujo:hover { background: var(--rose-gold); color: var(--lila-profundo); box-shadow: 0 0 30px rgba(183, 110, 121, 0.6); }
 
@@ -106,7 +105,7 @@
             margin: 20px auto;
             position: relative;
             overflow: hidden;
-            width: 90%; /* Para que no pegue en los bordes en móviles */
+            width: 90%;
         }
         .glass-card::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 2px;
@@ -160,7 +159,6 @@
             padding: 20px 10px;
             text-align: left;
         }
-        /* La línea vertical */
         .timeline::before {
             content: '';
             position: absolute;
@@ -195,17 +193,67 @@
         .carousel-track { display: flex; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .carousel-img { min-width: 100%; height: 500px; object-fit: cover; }
 
-        /* --- POLVO DE ESTRELLAS Y MARIPOSAS --- */
-        .particula { position: fixed; background: white; border-radius: 50%; pointer-events: none; opacity: 0; animation: flotar 5s infinite ease-in; z-index: 1; box-shadow: 0 0 5px white;}
-        .mariposa { position: fixed; font-size: 20px; pointer-events: none; opacity: 0; animation: volar 10s infinite linear; z-index: 2; filter: drop-shadow(0 0 5px var(--lila-bts)); }
+        /* --- 🌟 NUEVA MAGIA: EFECTOS --- */
+        /* Contenedor principal de la magia */
+        #magia { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+
+        /* Polvo de Estrellas (existente, más elegante) */
+        .particula { position: absolute; background: white; border-radius: 50%; pointer-events: none; opacity: 0; animation: flotar 5s infinite ease-in; box-shadow: 0 0 10px white;}
         
+        /* Mariposas Lilas (existente) */
+        .mariposa { position: absolute; font-size: 20px; pointer-events: none; opacity: 0; animation: volar 10s infinite linear; filter: drop-shadow(0 0 5px var(--lila-bts)); }
+
+        /* 🌸 Flores Mágicas (NUEVO) */
+        .flor-magica {
+            position: absolute;
+            font-size: 16px;
+            pointer-events: none;
+            opacity: 0;
+            animation: flor-deriva 7s infinite ease-out;
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+            color: rgba(255, 255, 255, 0.8); /* Flores suaves */
+        }
+
+        /* 💜 Corazón BTS / Love Yourself (NUEVO) */
+        .corazon-bts {
+            position: absolute;
+            font-size: 18px;
+            pointer-events: none;
+            opacity: 0;
+            animation: corazon-pulsante-vuela 9s infinite linear;
+            color: var(--lila-bts); /* El morado icónico */
+            filter: drop-shadow(0 0 8px var(--lila-bts));
+        }
+        
+        /* --- 🎬 NUEVOS KEYFRAMES --- */
+        
+        /* Flor: Deriva y gira suavemente hacia abajo */
+        @keyframes flor-deriva {
+            0% { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.5); }
+            15% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { opacity: 0; transform: translateY(80vh) rotate(360deg) scale(1.2); }
+        }
+
+        /* Corazón: Vuela en diagonal con un sutil pulso */
+        @keyframes corazon-pulsante-vuela {
+            0% { opacity: 0; transform: translate(0, 100vh) scale(1) rotate(0deg); }
+            10% { opacity: 1; }
+            50% { transform: translate(50vw, 50vh) scale(1.3) rotate(45deg); filter: drop-shadow(0 0 12px var(--lila-bts)); }
+            80% { opacity: 1; }
+            100% { opacity: 0; transform: translate(100vw, 0vh) scale(1) rotate(90deg); }
+        }
+
+        /* Keyframes existentes (sin cambios) */
         @keyframes flotar { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 50% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-100px) scale(1.5); } }
         @keyframes volar { 0% { opacity: 0; transform: translate(0, 10vh) rotate(-10deg) scale(0.8); } 20% { opacity: 0.6; } 80% { opacity: 0.6; } 100% { opacity: 0; transform: translate(50vw, -110vh) rotate(20deg) scale(1.2); } }
         
         footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; letter-spacing: 3px; color: #888; }
     </style>
 </head>
-<body class="no-scroll"> <div id="splash-screen">
+<body class="no-scroll">
+
+    <div id="splash-screen">
         <div class="puerta puerta-izq" id="puertaIzq"></div>
         <div class="puerta puerta-der" id="puertaDer"></div>
         <div class="splash-content" id="splashContent">
@@ -404,38 +452,67 @@
             document.getElementById('track').style.transform = `translateX(-${index * 100}%)`;
         }, 3500);
 
-        // --- POLVO DE ESTRELLAS Y MARIPOSAS ---
+        // --- 🌟 NUEVA MAGIA: GENERADOR DE EFECTOS ---
         function iniciarEfectos() {
             const contenedor = document.getElementById('magia');
             
-            // Crear Polvo de Estrellas
+            // 1. Crear Polvo de Estrellas (Luz)
             setInterval(() => {
                 const particula = document.createElement('div');
                 particula.classList.add('particula');
                 particula.style.left = Math.random() * 100 + 'vw';
                 particula.style.top = (Math.random() * 100 + 10) + 'vh';
-                particula.style.width = Math.random() * 3 + 1 + 'px';
+                particula.style.width = Math.random() * 4 + 2 + 'px'; // Ligeramente más grandes
                 particula.style.height = particula.style.width;
-                particula.style.animationDuration = Math.random() * 3 + 3 + 's';
+                particula.style.animationDuration = Math.random() * 4 + 4 + 's';
                 contenedor.appendChild(particula);
-                setTimeout(() => particula.remove(), 6000);
-            }, 200);
+                setTimeout(() => particula.remove(), 7000);
+            }, 180); // Ligeramente más rápido
 
-            // Crear Mariposas Lilas
+            // 2. Crear Mariposas Lilas (Temático)
             setInterval(() => {
                 const mariposa = document.createElement('div');
                 mariposa.classList.add('mariposa');
                 mariposa.innerHTML = '🦋';
                 mariposa.style.left = Math.random() * 100 + 'vw';
                 mariposa.style.top = '100vh';
-                mariposa.style.animationDuration = Math.random() * 5 + 8 + 's';
+                mariposa.style.animationDuration = Math.random() * 5 + 9 + 's';
                 contenedor.appendChild(mariposa);
-                setTimeout(() => mariposa.remove(), 13000);
+                setTimeout(() => mariposa.remove(), 14000);
+            }, 1800);
+
+            // 3. Crear Flores Mágicas (NUEVO)
+            setInterval(() => {
+                const flor = document.createElement('div');
+                flor.classList.add('flor-magica');
+                // Elegimos aleatoriamente entre diferentes tipos de flores
+                const tiposFlores = ['🌸', '💐', '🌺', '💮'];
+                flor.innerHTML = tiposFlores[Math.floor(Math.random() * tiposFlores.length)];
+                flor.style.left = Math.random() * 100 + 'vw';
+                flor.style.top = '-5vh'; // Empiezan arriba
+                flor.style.fontSize = Math.random() * 10 + 12 + 'px'; // Varios tamaños
+                flor.style.animationDuration = Math.random() * 3 + 6 + 's';
+                contenedor.appendChild(flor);
+                setTimeout(() => flor.remove(), 8000);
+            }, 500); // Lluvia suave
+
+            // 4. Crear Toque BTS: Corazón Love Yourself (NUEVO)
+            setInterval(() => {
+                const btsCorazon = document.createElement('div');
+                btsCorazon.classList.add('corazon-bts');
+                // Usamos el corazón púrpura y el icónico diseño de 'Love Yourself'
+                btsCorazon.innerHTML = '💜'; 
+                // Para el diseño 'Love Yourself', podríamos usar un SVG o una imagen
+                // Pero un emoji con un brillo intenso morado ya es súper temático
+                btsCorazon.style.left = '0vw'; // Empiezan en la esquina inferior izquierda
+                btsCorazon.style.top = '100vh'; 
+                btsCorazon.style.animationDuration = Math.random() * 3 + 8 + 's';
+                contenedor.appendChild(btsCorazon);
+                setTimeout(() => btsCorazon.remove(), 11000);
             }, 1500);
         }
     </script>
 </body>
 </html>
-
 
 
