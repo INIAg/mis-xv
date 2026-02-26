@@ -19,13 +19,10 @@
 
         * { box-sizing: border-box; }
 
-        body.no-scroll {
-            overflow: hidden;
-        }
+        body.no-scroll { overflow: hidden; }
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--lila-profundo);
             color: var(--blanco);
@@ -33,12 +30,10 @@
             scroll-behavior: smooth;
         }
 
-        /* --- SPLASH SCREEN (Puertas BTS) --- */
+        /* --- SPLASH SCREEN --- */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            z-index: 10000;
-            display: flex;
-            justify-content: center; align-items: center;
+            z-index: 10000; display: flex; justify-content: center; align-items: center;
             overflow: hidden;
         }
         .puerta {
@@ -46,66 +41,51 @@
             background: linear-gradient(to bottom, #11051f, var(--lila-profundo));
             transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 10001;
-            border-right: 1px solid var(--rose-gold);
         }
         .puerta-izq { left: 0; border-right: 2px solid var(--rose-gold); }
         .puerta-der { right: 0; border-left: 2px solid var(--rose-gold); }
-        
         .puerta-izq.abierta { transform: translateX(-100%); }
         .puerta-der.abierta { transform: translateX(100%); }
 
         .splash-content {
-            z-index: 10002;
-            text-align: center;
-            transition: opacity 0.5s ease;
+            z-index: 10002; text-align: center; transition: opacity 0.5s ease;
         }
-        .splash-content h1 { font-family: 'Great Vibes', cursive; font-size: 5rem; color: var(--rose-gold); margin: 0 0 20px 0; text-shadow: 0 0 20px rgba(183, 110, 121, 0.5); }
+        .splash-content h1 { 
+            font-family: 'Great Vibes', cursive; font-size: 5rem; 
+            color: var(--rose-gold); margin: 0 0 20px 0; 
+            text-shadow: 0 0 20px rgba(183, 110, 121, 0.5); 
+        }
         
         .btn-lujo {
-            padding: 15px 40px;
-            background: transparent;
-            color: var(--rose-gold);
-            border: 2px solid var(--rose-gold);
-            border-radius: 50px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 15px rgba(183, 110, 121, 0.2);
-            text-decoration: none;
+            padding: 15px 40px; background: transparent; color: var(--rose-gold);
+            border: 2px solid var(--rose-gold); border-radius: 50px;
+            font-family: 'Montserrat', sans-serif; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase; cursor: pointer;
+            transition: all 0.4s ease; box-shadow: 0 0 15px rgba(183, 110, 121, 0.2);
+            text-decoration: none; position: relative; z-index: 100;
         }
-        .btn-lujo:hover { background: var(--rose-gold); color: var(--lila-profundo); box-shadow: 0 0 30px rgba(183, 110, 121, 0.6); }
+        .btn-lujo:hover { 
+            background: var(--rose-gold); color: var(--lila-profundo); 
+            box-shadow: 0 0 30px rgba(183, 110, 121, 0.6); 
+        }
 
-        /* --- HERO & PARALLAX --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh;
             background-image: linear-gradient(rgba(26, 11, 46, 0.6), rgba(26, 11, 46, 0.9)), url('https://via.placeholder.com/1080x1920/2b1055/b76e79?text=FOTO+ELEGANTE+ZOÉ');
-            background-attachment: fixed;
-            background-position: center;
-            background-size: cover;
+            background-attachment: fixed; background-position: center; background-size: cover;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center;
-            position: relative;
+            text-align: center; position: relative;
         }
         .hero p { letter-spacing: 8px; color: var(--rose-gold); font-size: 1rem; text-transform: uppercase; margin-bottom: -10px;}
         .hero h1 { font-family: 'Great Vibes', cursive; font-size: 7rem; margin: 0; text-shadow: 0 0 30px rgba(255,255,255,0.3); }
 
-        /* --- EFECTO CRISTAL (GLASSMORPHISM) --- */
+        /* --- GLASSMORPHISM --- */
         .glass-card {
-            background: var(--cristal);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--borde-cristal);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 450px;
-            margin: 20px auto;
-            position: relative;
-            overflow: hidden;
-            width: 90%;
+            background: var(--cristal); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--borde-cristal); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            border-radius: 20px; padding: 40px; max-width: 450px; margin: 20px auto;
+            position: relative; overflow: hidden; width: 90%;
         }
         .glass-card::before {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 2px;
@@ -113,10 +93,9 @@
             animation: brillo 4s infinite linear;
         }
         @keyframes brillo { 100% { left: 200%; } }
-
         .glass-card h3 { color: var(--rose-gold); font-size: 1.8rem; margin-top: 0; font-family: 'Great Vibes', cursive; letter-spacing: 2px;}
 
-        /* --- CONTADOR ELEGANTE --- */
+        /* --- CONTADOR --- */
         .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;}
         .unit { 
             background: rgba(0,0,0,0.3); border: 1px solid var(--rose-gold);
@@ -125,129 +104,78 @@
         .unit span { display: block; font-size: 2rem; font-weight: bold; color: var(--blanco); text-shadow: 0 0 10px var(--rose-gold); }
         .unit small { font-size: 0.7rem; letter-spacing: 2px; color: #ccc; }
 
-        /* --- SECCIONES Y ANIMACIONES AL HACER SCROLL --- */
+        /* --- SECCIONES GENÉRICAS --- */
         section { padding: 80px 20px; text-align: center; position: relative; z-index: 10;}
         .seccion-oscura { background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4), transparent); }
-
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 1s ease-out, transform 1s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
         /* --- PADRES Y PADRINOS --- */
-        .nombres-familia {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            font-size: 1rem;
-            line-height: 1.8;
-            color: #e0e0e0;
-            max-width: 600px;
-            margin: auto;
-        }
-        .nombres-destacados {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            color: var(--rose-gold);
-            display: block;
-            margin: 10px 0 25px 0;
-            text-shadow: 0 0 10px rgba(183, 110, 121, 0.3);
-        }
+        .nombres-familia { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1rem; line-height: 1.8; color: #e0e0e0; max-width: 600px; margin: auto; }
+        .nombres-destacados { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--rose-gold); display: block; margin: 10px 0 25px 0; text-shadow: 0 0 10px rgba(183, 110, 121, 0.3); }
 
-        /* --- ITINERARIO MÓVIL (TIMELINE) --- */
-        .timeline {
-            position: relative;
-            max-width: 400px;
-            margin: 40px auto;
-            padding: 20px 10px;
-            text-align: left;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 20px;
-            width: 2px; height: 100%;
-            background: var(--rose-gold);
-        }
-        .timeline-item {
-            margin-bottom: 40px;
-            position: relative;
-            padding-left: 50px;
-        }
-        .timeline-dot {
-            position: absolute;
-            top: 5px; left: 13px;
-            width: 16px; height: 16px;
-            background: var(--lila-profundo);
-            border: 2px solid var(--rose-gold);
-            border-radius: 50%;
-            z-index: 2;
-            box-shadow: 0 0 10px var(--rose-gold);
-        }
+        /* --- ITINERARIO MÓVIL --- */
+        .timeline { position: relative; max-width: 400px; margin: 40px auto; padding: 20px 10px; text-align: left; }
+        .timeline::before { content: ''; position: absolute; top: 0; left: 20px; width: 2px; height: 100%; background: var(--rose-gold); }
+        .timeline-item { margin-bottom: 40px; position: relative; padding-left: 50px; }
+        .timeline-dot { position: absolute; top: 5px; left: 13px; width: 16px; height: 16px; background: var(--lila-profundo); border: 2px solid var(--rose-gold); border-radius: 50%; z-index: 2; box-shadow: 0 0 10px var(--rose-gold); }
         .timeline-content h4 { color: var(--dorado); margin: 0 0 5px 0; font-family: 'Great Vibes', cursive; font-size: 1.8rem; letter-spacing: 2px;}
         .timeline-content p { margin: 0; font-size: 0.95rem; font-weight: 300; letter-spacing: 1px;}
 
-        /* --- GALERÍA VIP --- */
-        .carousel {
-            position: relative; max-width: 350px; margin: auto; overflow: hidden;
-            border-radius: 20px; border: 2px solid var(--rose-gold);
-            box-shadow: 0 0 30px rgba(183, 110, 121, 0.3);
-        }
+        /* --- CARROUSEL VIP --- */
+        .carousel { position: relative; max-width: 350px; margin: auto; overflow: hidden; border-radius: 20px; border: 2px solid var(--rose-gold); box-shadow: 0 0 30px rgba(183, 110, 121, 0.3); }
         .carousel-track { display: flex; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
         .carousel-img { min-width: 100%; height: 500px; object-fit: cover; }
 
-        /* --- 🌟 NUEVA MAGIA: EFECTOS --- */
-        /* Contenedor principal de la magia */
-        #magia { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-
-        /* Polvo de Estrellas (existente, más elegante) */
+        /* --- 🌟 MAGIA Y PÉTALOS LILAS --- */
+        #magia { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden;}
+        
         .particula { position: absolute; background: white; border-radius: 50%; pointer-events: none; opacity: 0; animation: flotar 5s infinite ease-in; box-shadow: 0 0 10px white;}
-        
-        /* Mariposas Lilas (existente) */
         .mariposa { position: absolute; font-size: 20px; pointer-events: none; opacity: 0; animation: volar 10s infinite linear; filter: drop-shadow(0 0 5px var(--lila-bts)); }
+        .corazon-bts { position: absolute; font-size: 18px; pointer-events: none; opacity: 0; animation: corazon-pulsante-vuela 9s infinite linear; color: var(--lila-bts); filter: drop-shadow(0 0 8px var(--lila-bts)); }
 
-        /* 🌸 Flores Mágicas (NUEVO) */
-        .flor-magica {
-            position: absolute;
-            font-size: 16px;
-            pointer-events: none;
-            opacity: 0;
-            animation: flor-deriva 7s infinite ease-out;
-            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
-            color: rgba(255, 255, 255, 0.8); /* Flores suaves */
-        }
+        .petal { position: fixed; width: 100%; top: -50px; left: 0; text-align: left; pointer-events: none; z-index: 9999; }
+        .petal span { display: inline-block; margin: 0 1.5%; overflow: hidden; width: 5px; height: 5px; border-radius: 200px 10px 200px 200px; background: linear-gradient(to bottom, #e0b0ff, #A020F0); z-index: 1; transform: skewX(30deg); backface-visibility: visible; animation: fallingSakura1 8s ease infinite; }
+        .petal span:nth-of-type(3n+2) { animation: fallingSakura2 8s ease infinite; }
+        .petal span:nth-of-type(3n+1) { animation: fallingSakura3 8s ease infinite; }
+        .petal span:nth-of-type(n)   { animation-delay: -1.9s;}
+        .petal span:nth-of-type(2n)  { animation-delay: 3.9s;}
+        .petal span:nth-of-type(3n)  { animation-delay: 2.3s;}
+        .petal span:nth-of-type(4n)  { animation-delay: 4.4s;}
+        .petal span:nth-of-type(5n)  { animation-delay: 5s;  }
+        .petal span:nth-of-type(6n)  { animation-delay: 3.5s;}
+        .petal span:nth-of-type(7n)  { animation-delay: 2.8s;}
+        .petal span:nth-of-type(8n)  { animation-delay: 1.5s;}
+        .petal span:nth-of-type(9n)  { animation-delay: 3.3s;}
+        .petal span:nth-of-type(10n) { animation-delay: 2.5s;}
+        .petal span:nth-of-type(11n) { animation-delay: 1.2s;}
+        .petal span:nth-of-type(12n) { animation-delay: 4.1s;}
+        .petal span:nth-of-type(13n) { animation-delay: 5.8s;}
+        .petal span:nth-of-type(14n) { animation-delay: -0.1s;}
+        .petal span:nth-of-type(15n) { animation-delay: 6.3s;}
+        .petal span:nth-of-type(16n) { animation-delay: -1s;}
+        .petal span:nth-of-type(17n) { animation-delay: 7.4s;}
+        .petal span:nth-of-type(18n) { animation-delay: -0.3s;}
+        .petal span:nth-of-type(19n) { animation-delay: 8.3s;}
+        .petal span:nth-of-type(20n) { animation-delay: -0.6s;}
+        .petal span:nth-of-type(21n) { animation-delay: 7.7s;}
+        .petal span:nth-of-type(2n+2) { background: linear-gradient(to right, #dcd0ff, #da70d6); }
+        .petal span:nth-of-type(3n+1) { background: linear-gradient(to right, #dda0dd, #9966cc); }
+        .petal span:nth-of-type(3n+2) { border-radius: 20px 1px; animation-duration: 12s; height:17px; width:23px; }
+        .petal span:nth-of-type(3n+3) { transform: rotateX(-180deg); }
+        .petal span:nth-of-type(4n+2) { animation-duration: 9s; }
+        .petal span:nth-of-type(5n+2) { width: 12px; height: 12px; box-shadow: 1.5px 1.5px 8px #A020F0; }
+        .petal span:nth-of-type(4n+3) { width: 10px; height: 10px; box-shadow: 1px 1px 6px #A020F0; }
+        .petal span:nth-of-type(n)    { height:23px; width:30px; }
+        .petal span:nth-of-type(2n+1) { height:11px; width:16px; }
 
-        /* 💜 Corazón BTS / Love Yourself (NUEVO) */
-        .corazon-bts {
-            position: absolute;
-            font-size: 18px;
-            pointer-events: none;
-            opacity: 0;
-            animation: corazon-pulsante-vuela 9s infinite linear;
-            color: var(--lila-bts); /* El morado icónico */
-            filter: drop-shadow(0 0 8px var(--lila-bts));
-        }
-        
-        /* --- 🎬 NUEVOS KEYFRAMES --- */
-        
-        /* Flor: Deriva y gira suavemente hacia abajo */
-        @keyframes flor-deriva {
-            0% { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.5); }
-            15% { opacity: 0.8; }
-            80% { opacity: 0.8; }
-            100% { opacity: 0; transform: translateY(80vh) rotate(360deg) scale(1.2); }
-        }
-
-        /* Corazón: Vuela en diagonal con un sutil pulso */
-        @keyframes corazon-pulsante-vuela {
-            0% { opacity: 0; transform: translate(0, 100vh) scale(1) rotate(0deg); }
-            10% { opacity: 1; }
-            50% { transform: translate(50vw, 50vh) scale(1.3) rotate(45deg); filter: drop-shadow(0 0 12px var(--lila-bts)); }
-            80% { opacity: 1; }
-            100% { opacity: 0; transform: translate(100vw, 0vh) scale(1) rotate(90deg); }
-        }
-
-        /* Keyframes existentes (sin cambios) */
+        @keyframes fallingSakura1 { 0% { transform: translate3d(0,0,0) rotateX(0deg); opacity: 1; } 100% { transform: translate3d(400px,1200px,0px) rotateX(-290deg); opacity: 0.1; } }
+        @keyframes fallingSakura2 { 0% { transform: translate3d(0,0,0) rotateX(-20deg); opacity: 1; } 100% { transform: translate3d(200px,1200px,0px) rotateX(-70deg); opacity: 0.1; } }
+        @keyframes fallingSakura3 { 0% { transform: translate3d(0,0,0) rotateX(90deg); opacity: 1; } 100% { transform: translate3d(500px,1200px,0px) rotateX(290deg); opacity: 0; } }
+        @keyframes corazon-pulsante-vuela { 0% { opacity: 0; transform: translate(0, 100vh) scale(1) rotate(0deg); } 10% { opacity: 1; } 50% { transform: translate(50vw, 50vh) scale(1.3) rotate(45deg); filter: drop-shadow(0 0 12px var(--lila-bts)); } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(100vw, 0vh) scale(1) rotate(90deg); } }
         @keyframes flotar { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 50% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-100px) scale(1.5); } }
         @keyframes volar { 0% { opacity: 0; transform: translate(0, 10vh) rotate(-10deg) scale(0.8); } 20% { opacity: 0.6; } 80% { opacity: 0.6; } 100% { opacity: 0; transform: translate(50vw, -110vh) rotate(20deg) scale(1.2); } }
-        
+
         footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; letter-spacing: 3px; color: #888; }
     </style>
 </head>
@@ -268,6 +196,7 @@
     </audio>
 
     <div id="magia"></div>
+    <div class="petal" id="petalos-container" style="display: none;"></div>
 
     <header class="hero">
         <p class="fade-in">I PURPLE YOU</p>
@@ -286,10 +215,8 @@
         <div class="fade-in nombres-familia">
             <p>Con la bendición de Dios y en compañía de mis padres:</p>
             <span class="nombres-destacados">Nombre del Padre <br>& Nombre de la Madre</span>
-            
             <p>Y mis padrinos:</p>
             <span class="nombres-destacados">Nombre del Padrino <br>& Nombre de la Madrina</span>
-            
             <p>Tengo la inmensa alegría de invitarte a celebrar la magia de este día tan especial.</p>
         </div>
     </section>
@@ -311,7 +238,6 @@
             <p style="font-weight: 300; line-height: 1.8;">18:00 Horas<br>Parroquia de San Juan</p>
             <a href="URL_MAPS_AQUI" class="btn-lujo" style="display:inline-block; margin-top: 15px; padding: 10px 30px; font-size: 0.8rem;" target="_blank">Ubicación Vip</a>
         </div>
-
         <div class="glass-card fade-in" style="transition-delay: 0.2s;">
             <h3>Recepción</h3>
             <p style="font-weight: 300; line-height: 1.8;">20:00 Horas<br>Finca Maldonado</p>
@@ -322,41 +248,11 @@
     <section class="seccion-oscura">
         <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">ITINERARIO MÁGICO</h2>
         <div class="timeline">
-            <div class="timeline-item fade-in">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>18:00 hrs</h4>
-                    <p>Ceremonia Religiosa ⛪</p>
-                </div>
-            </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>20:00 hrs</h4>
-                    <p>Recepción en Finca Maldonado 🥂</p>
-                </div>
-            </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>21:00 hrs</h4>
-                    <p>Cena de Gala 🍽️</p>
-                </div>
-            </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>22:00 hrs</h4>
-                    <p>El Vals ✨</p>
-                </div>
-            </div>
-            <div class="timeline-item fade-in">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>23:00 hrs</h4>
-                    <p>Permission to Dance 🕺💃</p>
-                </div>
-            </div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>18:00 hrs</h4><p>Ceremonia Religiosa ⛪</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>20:00 hrs</h4><p>Recepción en Finca Maldonado 🥂</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>21:00 hrs</h4><p>Cena de Gala 🍽️</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>22:00 hrs</h4><p>El Vals ✨</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>23:00 hrs</h4><p>Permission to Dance 🕺💃</p></div></div>
         </div>
     </section>
 
@@ -373,13 +269,11 @@
 
     <section class="seccion-oscura">
         <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">DETALLES IMPORTANTES</h2>
-        
         <div class="glass-card fade-in" style="margin-bottom: 30px;">
             <h3 style="color: var(--blanco);">Dress Code</h3>
             <p style="font-weight: 300; font-size: 0.95rem; line-height: 1.6;"><strong>FORMAL / ETIQUETA RIGUROSA</strong></p>
             <p style="font-weight: 300; font-size: 0.85rem; line-height: 1.6; color: #ccc;">Por favor, abstenerse de usar prendas de color <strong>Lila o Morado</strong>, ya que este color está reservado exclusivamente para la quinceañera.</p>
         </div>
-
         <div class="glass-card fade-in">
             <h3 style="color: var(--blanco);">Lluvia de Sobres</h3>
             <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Tu presencia es mi regalo más grande en esta noche mágica. Sin embargo, si deseas tener un detalle adicional conmigo, habrá un buzón en la recepción para lluvia de sobres. ✉️💜</p>
@@ -399,42 +293,27 @@
     </footer>
 
     <script>
-        // --- ANIMACIÓN DE ENTRADA Y MÚSICA ---
         function abrirInvitacion() {
-            // Liberar el scroll
             document.body.classList.remove('no-scroll');
-
-            // Reproducir música
             document.getElementById('bg-music').play().catch(e => console.log(e));
-            
-            // Ocultar texto
             document.getElementById('splashContent').style.opacity = '0';
-            
-            // Abrir Puertas
             setTimeout(() => {
                 document.getElementById('puertaIzq').classList.add('abierta');
                 document.getElementById('puertaDer').classList.add('abierta');
             }, 300);
-
-            // Quitar splash del DOM para poder hacer scroll fluido
             setTimeout(() => {
                 document.getElementById('splash-screen').style.display = 'none';
-                iniciarEfectos(); // Arranca las partículas al entrar
+                iniciarEfectos();
             }, 1800);
         }
 
-        // --- ANIMACIONES AL HACER SCROLL ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
             });
         }, { threshold: 0.15 });
-
         document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-        // --- CUENTA REGRESIVA ---
         const target = new Date('Dec 20, 2026 18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -445,31 +324,37 @@
             document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
         }, 1000);
 
-        // --- GALERÍA VIP ---
         let index = 0;
         setInterval(() => {
             index = (index + 1) % 3;
             document.getElementById('track').style.transform = `translateX(-${index * 100}%)`;
         }, 3500);
 
-        // --- 🌟 NUEVA MAGIA: GENERADOR DE EFECTOS ---
         function iniciarEfectos() {
             const contenedor = document.getElementById('magia');
+            const petalosContainer = document.getElementById('petalos-container');
             
-            // 1. Crear Polvo de Estrellas (Luz)
+            // Activar pétalos lilas
+            petalosContainer.style.display = 'block';
+            for (let i = 0; i < 35; i++) {
+                const span = document.createElement('span');
+                petalosContainer.appendChild(span);
+            }
+
+            // Polvo de estrellas
             setInterval(() => {
                 const particula = document.createElement('div');
                 particula.classList.add('particula');
                 particula.style.left = Math.random() * 100 + 'vw';
                 particula.style.top = (Math.random() * 100 + 10) + 'vh';
-                particula.style.width = Math.random() * 4 + 2 + 'px'; // Ligeramente más grandes
+                particula.style.width = Math.random() * 4 + 2 + 'px';
                 particula.style.height = particula.style.width;
                 particula.style.animationDuration = Math.random() * 4 + 4 + 's';
                 contenedor.appendChild(particula);
                 setTimeout(() => particula.remove(), 7000);
-            }, 180); // Ligeramente más rápido
+            }, 180);
 
-            // 2. Crear Mariposas Lilas (Temático)
+            // Mariposas
             setInterval(() => {
                 const mariposa = document.createElement('div');
                 mariposa.classList.add('mariposa');
@@ -481,30 +366,12 @@
                 setTimeout(() => mariposa.remove(), 14000);
             }, 1800);
 
-            // 3. Crear Flores Mágicas (NUEVO)
-            setInterval(() => {
-                const flor = document.createElement('div');
-                flor.classList.add('flor-magica');
-                // Elegimos aleatoriamente entre diferentes tipos de flores
-                const tiposFlores = ['🌸', '💐', '🌺', '💮'];
-                flor.innerHTML = tiposFlores[Math.floor(Math.random() * tiposFlores.length)];
-                flor.style.left = Math.random() * 100 + 'vw';
-                flor.style.top = '-5vh'; // Empiezan arriba
-                flor.style.fontSize = Math.random() * 10 + 12 + 'px'; // Varios tamaños
-                flor.style.animationDuration = Math.random() * 3 + 6 + 's';
-                contenedor.appendChild(flor);
-                setTimeout(() => flor.remove(), 8000);
-            }, 500); // Lluvia suave
-
-            // 4. Crear Toque BTS: Corazón Love Yourself (NUEVO)
+            // Corazones BTS
             setInterval(() => {
                 const btsCorazon = document.createElement('div');
                 btsCorazon.classList.add('corazon-bts');
-                // Usamos el corazón púrpura y el icónico diseño de 'Love Yourself'
                 btsCorazon.innerHTML = '💜'; 
-                // Para el diseño 'Love Yourself', podríamos usar un SVG o una imagen
-                // Pero un emoji con un brillo intenso morado ya es súper temático
-                btsCorazon.style.left = '0vw'; // Empiezan en la esquina inferior izquierda
+                btsCorazon.style.left = '0vw'; 
                 btsCorazon.style.top = '100vh'; 
                 btsCorazon.style.animationDuration = Math.random() * 3 + 8 + 's';
                 contenedor.appendChild(btsCorazon);
@@ -514,5 +381,3 @@
     </script>
 </body>
 </html>
-
-
