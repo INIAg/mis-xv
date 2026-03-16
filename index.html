@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis XV - Zoé 🦋✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Mis XV - Zoé ✨🌌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --lila-profundo: #1a0b2e;
+            --espacio-profundo: #0a0a1a;
             --lila-bts: #A020F0;
             --rose-gold: #b76e79;
             --dorado: #d4af37;
@@ -18,415 +18,166 @@
         }
 
         * { box-sizing: border-box; }
-
         body.no-scroll { overflow: hidden; }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--lila-profundo);
+            background-color: var(--espacio-profundo);
             color: var(--blanco);
             overflow-x: hidden;
             scroll-behavior: smooth;
+        }
+
+        /* --- FONDO GALAXIA --- */
+        #galaxy-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+            z-index: -1;
         }
 
         /* --- SPLASH SCREEN --- */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             z-index: 10000; display: flex; justify-content: center; align-items: center;
-            overflow: hidden;
         }
         .puerta {
             position: absolute; top: 0; width: 50%; height: 100%;
-            background: linear-gradient(to bottom, #11051f, var(--lila-profundo));
+            background: #050505;
             transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 10001;
         }
-        .puerta-izq { left: 0; border-right: 2px solid var(--rose-gold); }
-        .puerta-der { right: 0; border-left: 2px solid var(--rose-gold); }
+        .puerta-izq { left: 0; border-right: 1px solid var(--lila-bts); }
+        .puerta-der { right: 0; border-left: 1px solid var(--lila-bts); }
         .puerta-izq.abierta { transform: translateX(-100%); }
         .puerta-der.abierta { transform: translateX(100%); }
 
-        /* --- LOGO BTS DIVIDIDO EN PUERTAS --- */
-        .bts-logo-mitad {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 45px;
-            height: 120px;
-            background-color: var(--rose-gold);
-            box-shadow: 0 0 20px rgba(183, 110, 121, 0.6);
-            z-index: 10002; 
-        }
-        .puerta-izq .bts-logo-mitad {
-            right: 15px; 
-            clip-path: polygon(100% 0, 100% 100%, 0% 85%, 0% 15%);
-        }
-        .puerta-der .bts-logo-mitad {
-            left: 15px; 
-            clip-path: polygon(0 0, 0 100%, 100% 85%, 100% 15%);
-        }
-
-        /* --- CONTENIDO INICIAL (ARMY BOMB) --- */
-        .splash-content {
-            z-index: 10005; 
-            text-align: center; transition: opacity 0.5s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* --- TU CSS DE LA ARMY BOMB ADAPTADO --- */
         .army-bomb-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            position: relative;
+            z-index: 10005; text-align: center; cursor: pointer;
             transition: transform 0.3s ease;
-            -webkit-tap-highlight-color: transparent;
         }
-        .army-bomb-container:hover {
-            transform: scale(1.05);
-        }
-
         .army-bomb {
-            width: 140px;
-            height: 140px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            animation: light-up 2s infinite ease-in-out;
-            position: relative;
-            z-index: 2;
+            width: 120px; height: 120px; background: #fff; border-radius: 50%;
+            box-shadow: 0 0 50px rgba(255,255,255,0.8); animation: pulse 2s infinite;
         }
-
         .handle {
-            width: 40px;
-            height: 140px;
-            background-color: #1a1a1a;
-            position: relative;
-            margin-top: -15px; /* Para que se meta debajo de la esfera blanca */
-            z-index: 1;
-            border-radius: 0 0 10px 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 35px; /* Empuja el logo de BTS hacia abajo */
+            width: 35px; height: 100px; background: #1a1a1a; margin: -10px auto 0;
+            border-radius: 0 0 10px 10px; position: relative;
         }
-
-        /* Antena roja superior */
-        .antenna {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 25px;
-            height: 8px;
-            background-color: #1a1a1a;
-            transform: rotate(45deg);
-            z-index: 0;
-        }
-        .antenna::after {
-            content: "";
-            position: absolute;
-            top: -3px;
-            right: -2px;
-            width: 5px;
-            height: 7px;
-            background-color: red;
-            border-radius: 50%;
-        }
-
-        /* Tu diseño del Logo BTS en el mango */
-        .bts-logo-handle {
-            display: flex;
-            gap: 5px;
-        }
-        .trapecio {
-            border-bottom: 12px solid white;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            height: 0;
-            width: 10px;
-        }
-        .trapecio.izq { transform: rotate(90deg); }
-        .trapecio.der { transform: rotate(-90deg); }
-
-        @keyframes light-up {
-            0%   { box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.8); }
-            50%  { box-shadow: 0px 0px 60px 25px rgba(255, 255, 255, 1); }
-            100% { box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.8); }
-        }
-
-        /* Texto sutil debajo de la Army Bomb */
-        .instruccion-entrar {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            color: #ccc;
-            letter-spacing: 3px;
-            margin-top: 40px;
-            text-transform: uppercase;
-            animation: latidoElegante 2s infinite ease-in-out;
-            pointer-events: none;
-        }
-        
-        @keyframes latidoElegante {
-            0% { transform: scale(1); opacity: 0.6;}
-            50% { transform: scale(1.05); opacity: 1;}
-            100% { transform: scale(1); opacity: 0.6;}
-        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
 
         /* --- HERO --- */
         .hero {
             height: 100vh;
-            background-image: linear-gradient(rgba(26, 11, 46, 0.6), rgba(26, 11, 46, 0.9)), url('https://via.placeholder.com/1080x1920/2b1055/b76e79?text=FOTO+ELEGANTE+ZOÉ');
-            background-attachment: fixed; background-position: center; background-size: cover;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; position: relative;
+            text-align: center; background: rgba(0,0,0,0.4);
         }
-        .hero p { letter-spacing: 8px; color: var(--rose-gold); font-size: 1rem; text-transform: uppercase; margin-bottom: -10px;}
-        .hero h1 { font-family: 'Great Vibes', cursive; font-size: 7rem; margin: 0; text-shadow: 0 0 30px rgba(255,255,255,0.3); }
+        .hero h1 { font-family: 'Syncopate', sans-serif; font-size: 4rem; letter-spacing: 15px; margin: 0; color: var(--blanco); }
+        .hero p { font-size: 1rem; letter-spacing: 5px; color: var(--rose-gold); margin-top: 20px; }
 
         /* --- GLASSMORPHISM --- */
         .glass-card {
-            background: var(--cristal); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--borde-cristal); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            border-radius: 20px; padding: 40px; max-width: 450px; margin: 20px auto;
-            position: relative; overflow: hidden; width: 90%;
+            background: var(--cristal); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--borde-cristal); border-radius: 15px; padding: 40px;
+            max-width: 500px; margin: 20px auto; width: 90%;
         }
-        .glass-card::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--rose-gold), transparent);
-            animation: brillo 4s infinite linear;
-        }
-        @keyframes brillo { 100% { left: 200%; } }
-        .glass-card h3 { color: var(--rose-gold); font-size: 1.8rem; margin-top: 0; font-family: 'Great Vibes', cursive; letter-spacing: 2px;}
+        h2, h3 { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: 3px; color: var(--dorado); }
 
-        /* --- CONTADOR --- */
-        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;}
-        .unit { 
-            background: rgba(0,0,0,0.3); border: 1px solid var(--rose-gold);
-            padding: 15px; border-radius: 10px; min-width: 70px; text-align: center;
-        }
-        .unit span { display: block; font-size: 2rem; font-weight: bold; color: var(--blanco); text-shadow: 0 0 10px var(--rose-gold); }
-        .unit small { font-size: 0.7rem; letter-spacing: 2px; color: #ccc; }
-
-        /* --- SECCIONES GENÉRICAS --- */
-        section { padding: 80px 20px; text-align: center; position: relative; z-index: 10;}
-        .seccion-oscura { background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4), transparent); }
-        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 1s ease-out, transform 1s ease-out; }
+        /* --- SECCIONES --- */
+        section { padding: 80px 20px; text-align: center; }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .nombres-familia { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1rem; line-height: 1.8; color: #e0e0e0; max-width: 600px; margin: auto; }
-        .nombres-destacados { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--rose-gold); display: block; margin: 10px 0 25px 0; text-shadow: 0 0 10px rgba(183, 110, 121, 0.3); }
+        .timer { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .unit { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; min-width: 80px; }
+        .unit span { display: block; font-size: 1.8rem; font-weight: bold; }
 
-        .timeline { position: relative; max-width: 400px; margin: 40px auto; padding: 20px 10px; text-align: left; }
-        .timeline::before { content: ''; position: absolute; top: 0; left: 20px; width: 2px; height: 100%; background: var(--rose-gold); }
-        .timeline-item { margin-bottom: 40px; position: relative; padding-left: 50px; }
-        .timeline-dot { position: absolute; top: 5px; left: 13px; width: 16px; height: 16px; background: var(--lila-profundo); border: 2px solid var(--rose-gold); border-radius: 50%; z-index: 2; box-shadow: 0 0 10px var(--rose-gold); }
-        .timeline-content h4 { color: var(--dorado); margin: 0 0 5px 0; font-family: 'Great Vibes', cursive; font-size: 1.8rem; letter-spacing: 2px;}
-        .timeline-content p { margin: 0; font-size: 0.95rem; font-weight: 300; letter-spacing: 1px;}
-
-        .carousel { position: relative; max-width: 350px; margin: auto; overflow: hidden; border-radius: 20px; border: 2px solid var(--rose-gold); box-shadow: 0 0 30px rgba(183, 110, 121, 0.3); }
-        .carousel-track { display: flex; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-        .carousel-img { min-width: 100%; height: 500px; object-fit: cover; }
-
-        /* --- 🌟 MAGIA Y PÉTALOS LILAS --- */
-        #magia { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden;}
-        
-        .particula { position: absolute; background: white; border-radius: 50%; pointer-events: none; opacity: 0; animation: flotar 5s infinite ease-in; box-shadow: 0 0 10px white;}
-        .mariposa { position: absolute; font-size: 20px; pointer-events: none; opacity: 0; animation: volar 10s infinite linear; filter: drop-shadow(0 0 5px var(--lila-bts)); }
-        
-        .corazon-bts { 
-            position: absolute; font-size: 22px; pointer-events: none; opacity: 0; 
-            animation: corazon-pulsante-vuela 9s infinite linear; color: var(--lila-bts); 
-            filter: drop-shadow(0 0 8px var(--lila-bts)); 
+        .btn-lujo {
+            display: inline-block; padding: 12px 30px; border: 1px solid var(--rose-gold);
+            color: var(--rose-gold); text-decoration: none; border-radius: 5px;
+            transition: 0.3s; margin-top: 20px; font-size: 0.8rem; letter-spacing: 2px;
         }
+        .btn-lujo:hover { background: var(--rose-gold); color: white; }
 
-        .petal { position: fixed; width: 100%; top: -50px; left: 0; text-align: left; pointer-events: none; z-index: 9999; }
-        .petal span { display: inline-block; margin: 0 1.5%; overflow: hidden; width: 5px; height: 5px; border-radius: 200px 10px 200px 200px; background: linear-gradient(to bottom, #e0b0ff, #A020F0); z-index: 1; transform: skewX(30deg); backface-visibility: visible; animation: fallingSakura1 8s ease infinite; }
-        .petal span:nth-of-type(3n+2) { animation: fallingSakura2 8s ease infinite; }
-        .petal span:nth-of-type(3n+1) { animation: fallingSakura3 8s ease infinite; }
-        .petal span:nth-of-type(n)   { animation-delay: -1.9s;}
-        .petal span:nth-of-type(2n)  { animation-delay: 3.9s;}
-        .petal span:nth-of-type(3n)  { animation-delay: 2.3s;}
-        .petal span:nth-of-type(4n)  { animation-delay: 4.4s;}
-        .petal span:nth-of-type(5n)  { animation-delay: 5s;  }
-        .petal span:nth-of-type(6n)  { animation-delay: 3.5s;}
-        .petal span:nth-of-type(7n)  { animation-delay: 2.8s;}
-        .petal span:nth-of-type(8n)  { animation-delay: 1.5s;}
-        .petal span:nth-of-type(9n)  { animation-delay: 3.3s;}
-        .petal span:nth-of-type(10n) { animation-delay: 2.5s;}
-        .petal span:nth-of-type(11n) { animation-delay: 1.2s;}
-        .petal span:nth-of-type(12n) { animation-delay: 4.1s;}
-        .petal span:nth-of-type(13n) { animation-delay: 5.8s;}
-        .petal span:nth-of-type(14n) { animation-delay: -0.1s;}
-        .petal span:nth-of-type(15n) { animation-delay: 6.3s;}
-        .petal span:nth-of-type(16n) { animation-delay: -1s;}
-        .petal span:nth-of-type(17n) { animation-delay: 7.4s;}
-        .petal span:nth-of-type(18n) { animation-delay: -0.3s;}
-        .petal span:nth-of-type(19n) { animation-delay: 8.3s;}
-        .petal span:nth-of-type(20n) { animation-delay: -0.6s;}
-        .petal span:nth-of-type(21n) { animation-delay: 7.7s;}
-        .petal span:nth-of-type(2n+2) { background: linear-gradient(to right, #dcd0ff, #da70d6); }
-        .petal span:nth-of-type(3n+1) { background: linear-gradient(to right, #dda0dd, #9966cc); }
-        .petal span:nth-of-type(3n+2) { border-radius: 20px 1px; animation-duration: 12s; height:17px; width:23px; }
-        .petal span:nth-of-type(3n+3) { transform: rotateX(-180deg); }
-        .petal span:nth-of-type(4n+2) { animation-duration: 9s; }
-        .petal span:nth-of-type(5n+2) { width: 12px; height: 12px; box-shadow: 1.5px 1.5px 8px #A020F0; }
-        .petal span:nth-of-type(4n+3) { width: 10px; height: 10px; box-shadow: 1px 1px 6px #A020F0; }
-        .petal span:nth-of-type(n)    { height:23px; width:30px; }
-        .petal span:nth-of-type(2n+1) { height:11px; width:16px; }
-
-        @keyframes fallingSakura1 { 0% { transform: translate3d(0,0,0) rotateX(0deg); opacity: 1; } 100% { transform: translate3d(400px,1200px,0px) rotateX(-290deg); opacity: 0.1; } }
-        @keyframes fallingSakura2 { 0% { transform: translate3d(0,0,0) rotateX(-20deg); opacity: 1; } 100% { transform: translate3d(200px,1200px,0px) rotateX(-70deg); opacity: 0.1; } }
-        @keyframes fallingSakura3 { 0% { transform: translate3d(0,0,0) rotateX(90deg); opacity: 1; } 100% { transform: translate3d(500px,1200px,0px) rotateX(290deg); opacity: 0; } }
-        
-        @keyframes corazon-pulsante-vuela { 
-            0% { opacity: 0; transform: translate(0, 100vh) scale(1) rotate(0deg); } 
-            10% { opacity: 1; } 
-            50% { transform: translate(50vw, 50vh) scale(1.3) rotate(45deg); filter: drop-shadow(0 0 12px var(--lila-bts)); } 
-            80% { opacity: 1; } 
-            100% { opacity: 0; transform: translate(100vw, -10vh) scale(1) rotate(90deg); } 
-        }
-        
-        @keyframes flotar { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 50% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-100px) scale(1.5); } }
-        @keyframes volar { 0% { opacity: 0; transform: translate(0, 10vh) rotate(-10deg) scale(0.8); } 20% { opacity: 0.6; } 80% { opacity: 0.6; } 100% { opacity: 0; transform: translate(50vw, -110vh) rotate(20deg) scale(1.2); } }
-
-        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; letter-spacing: 3px; color: #888; }
+        /* --- ESTRELLAS --- */
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: star-shine 5s infinite; }
+        @keyframes star-shine { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(0.5); } }
     </style>
 </head>
 <body class="no-scroll">
 
+    <div id="galaxy-bg"></div>
+
     <div id="splash-screen">
-        <div class="puerta puerta-izq" id="puertaIzq">
-            <div class="bts-logo-mitad"></div>
-        </div>
-        <div class="puerta puerta-der" id="puertaDer">
-            <div class="bts-logo-mitad"></div>
-        </div>
-        <div class="splash-content" id="splashContent">
-            
-            <div class="army-bomb-container" onclick="abrirInvitacion()">
-                <div class="army-bomb"></div>
-                <div class="handle">
-                    <div class="antenna"></div>
-                    <div class="bts-logo-handle">
-                        <div class="trapecio izq"></div>
-                        <div class="trapecio der"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <p class="instruccion-entrar">🎧 Toca la Army Bomb para encender la magia ✨</p>
+        <div class="puerta puerta-izq" id="puertaIzq"></div>
+        <div class="puerta puerta-der" id="puertaDer"></div>
+        <div class="army-bomb-container" onclick="abrirInvitacion()" id="splashContent">
+            <div class="army-bomb"></div>
+            <div class="handle"></div>
+            <p style="margin-top: 20px; font-size: 0.7rem; letter-spacing: 3px;">TOCA PARA ENCENDER LA MAGIA</p>
         </div>
     </div>
 
-    <audio id="bg-music" loop preload="auto">
-        <source src="musica-bts.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="magia"></div>
-    <div class="petal" id="petalos-container" style="display: none;"></div>
-
     <header class="hero">
-        <p class="fade-in">I PURPLE YOU</p>
-        <h1 class="fade-in" style="transition-delay: 0.2s;">Zoé</h1>
-        <p class="fade-in" style="transition-delay: 0.4s;">20 . DICIEMBRE . 2026</p>
+        <h1 class="fade-in">ZOÉ</h1>
+        <p class="fade-in">24 . OCTUBRE . 2026</p>
     </header>
 
-    <section class="seccion-oscura">
-        <div class="fade-in" style="max-width: 600px; margin: auto; font-style: italic; font-size: 1.3rem; color: #ccc;">
-            <p>"Porque en la oscuridad, nosotros somos la luz del otro."</p>
-            <h3 style="font-family:'Great Vibes', cursive; font-size: 2.5rem; color: var(--rose-gold); margin-top: 10px;">BTS</h3>
+    <section>
+        <div class="fade-in glass-card">
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                "Incluso si me caigo y me lastimo, seguiré corriendo hacia mis sueños"
+            </p>
+            <small style="color: var(--lila-bts); letter-spacing: 2px;">EPILOGUE: YOUNG FOREVER - BTS</small>
         </div>
     </section>
 
     <section>
-        <div class="fade-in nombres-familia">
-            <p>Con la bendición de Dios y en compañía de mis padres:</p>
-            <span class="nombres-destacados">Nombre del Padre <br>& Nombre de la Madre</span>
-            <p>Y mis padrinos:</p>
-            <span class="nombres-destacados">Nombre del Padrino <br>& Nombre de la Madrina</span>
-            <p>Tengo la inmensa alegría de invitarte a celebrar la magia de este día tan especial.</p>
+        <div class="fade-in">
+            <h3>Con el amor de mis padres:</h3>
+            <p style="font-size: 1.2rem;">Siul López | Gabriela Ruiz de Chávez</p>
+            
+            <h3 style="margin-top: 40px;">Y el apoyo de mis padrinos:</h3>
+            <p style="font-size: 1.2rem;">Gibrán Vallín | Angélica Franco</p>
         </div>
     </section>
 
-    <section class="seccion-oscura">
-        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem;">FALTAN PARA LA MAGIA</h2>
+    <section>
+        <h2 class="fade-in">Cuenta Regresiva</h2>
         <div class="timer fade-in">
             <div class="unit"><span id="days">00</span><small>DÍAS</small></div>
             <div class="unit"><span id="hours">00</span><small>HRS</small></div>
             <div class="unit"><span id="minutes">00</span><small>MIN</small></div>
-            <div class="unit"><span id="seconds">00</span><small>SEG</small></div>
         </div>
     </section>
 
     <section>
-        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 20px;">DÓNDE Y CUÁNDO</h2>
         <div class="glass-card fade-in">
-            <h3>Ceremonia</h3>
-            <p style="font-weight: 300; line-height: 1.8;">18:00 Horas<br>Parroquia de San Juan</p>
-            <a href="URL_MAPS_AQUI" class="btn-lujo" style="display:inline-block; margin-top: 15px; padding: 10px 30px; font-size: 0.8rem;" target="_blank">Ubicación Vip</a>
-        </div>
-        <div class="glass-card fade-in" style="transition-delay: 0.2s;">
             <h3>Recepción</h3>
-            <p style="font-weight: 300; line-height: 1.8;">20:00 Horas<br>Finca Maldonado</p>
-            <a href="URL_MAPS_AQUI" class="btn-lujo" style="display:inline-block; margin-top: 15px; padding: 10px 30px; font-size: 0.8rem;" target="_blank">Ubicación Vip</a>
-        </div>
-    </section>
-
-    <section class="seccion-oscura">
-        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">ITINERARIO MÁGICO</h2>
-        <div class="timeline">
-            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>18:00 hrs</h4><p>Ceremonia Religiosa ⛪</p></div></div>
-            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>20:00 hrs</h4><p>Recepción en Finca Maldonado 🥂</p></div></div>
-            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>21:00 hrs</h4><p>Cena de Gala 🍽️</p></div></div>
-            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>22:00 hrs</h4><p>El Vals ✨</p></div></div>
-            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>23:00 hrs</h4><p>Permission to Dance 🕺💃</p></div></div>
+            <p>18:00 HRS</p>
+            <p><strong>Salón "El Terreno de los Abuelos"</strong></p>
+            <p style="font-size: 0.9rem;">Toluca Manzana 085, La Concepción, 54900 Tultitlán de Mariano Escobedo, Méx.</p>
+            <a href="https://maps.google.com/?q=Toluca+Manzana+085+La+Concepcion+Tultitlan" class="btn-lujo" target="_blank">VER UBICACIÓN</a>
         </div>
     </section>
 
     <section>
-        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">SESIÓN EXCLUSIVA</h2>
-        <div class="carousel fade-in">
-            <div class="carousel-track" id="track">
-                <img src="https://via.placeholder.com/400x600/1a0b2e/b76e79?text=Sesión+Zoé+1" class="carousel-img">
-                <img src="https://via.placeholder.com/400x600/2b1055/d4af37?text=Sesión+Zoé+2" class="carousel-img">
-                <img src="https://via.placeholder.com/400x600/11051f/b76e79?text=Sesión+Zoé+3" class="carousel-img">
-            </div>
+        <h2 class="fade-in">Itinerario</h2>
+        <div class="fade-in" style="max-width: 400px; margin: auto; text-align: left; padding-left: 20px; border-left: 1px solid var(--lila-bts);">
+            <p><strong>18:00 hrs</strong> - Recepción</p>
+            <p><strong>21:00 hrs</strong> - Cena de Gala</p>
+            <p><strong>22:00 hrs</strong> - El Vals</p>
+            <p><strong>23:00 hrs</strong> - Permission to Dance ✨</p>
         </div>
     </section>
 
-    <section class="seccion-oscura">
-        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">DETALLES IMPORTANTES</h2>
-        <div class="glass-card fade-in" style="margin-bottom: 30px;">
-            <h3 style="color: var(--blanco);">Dress Code</h3>
-            <p style="font-weight: 300; font-size: 0.95rem; line-height: 1.6;"><strong>FORMAL / ETIQUETA RIGUROSA</strong></p>
-            <p style="font-weight: 300; font-size: 0.85rem; line-height: 1.6; color: #ccc;">Por favor, abstenerse de usar prendas de color <strong>Lila o Morado</strong>, ya que este color está reservado exclusivamente para la quinceañera.</p>
-        </div>
-        <div class="glass-card fade-in">
-            <h3 style="color: var(--blanco);">Lluvia de Sobres</h3>
-            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Tu presencia es mi regalo más grande en esta noche mágica. Sin embargo, si deseas tener un detalle adicional conmigo, habrá un buzón en la recepción para lluvia de sobres. ✉️💜</p>
-        </div>
-    </section>
-
-    <section>
-        <div class="glass-card fade-in">
-            <h3 style="color: var(--dorado);">Confirmar Asistencia</h3>
-            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Será un honor compartir esta noche inolvidable contigo. Por favor, confirma antes del 1 de diciembre.</p>
-            <a href="https://wa.me/52TUNUMERO?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Zoé%20💜" class="btn-lujo" style="display:inline-block; margin-top: 20px; border-color: var(--dorado); color: var(--dorado);" target="_blank">RSVP WhatsApp</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>ZOÉ 2026 | MAGIC SHOP ✨</p>
+    <footer style="padding: 50px; opacity: 0.6; font-size: 0.7rem; letter-spacing: 4px;">
+        ZOÉ 2026 | I PURPLE YOU 💜
     </footer>
 
     <script>
         function abrirInvitacion() {
             document.body.classList.remove('no-scroll');
-            document.getElementById('bg-music').play().catch(e => console.log(e));
             document.getElementById('splashContent').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('puertaIzq').classList.add('abierta');
@@ -434,77 +185,43 @@
             }, 300);
             setTimeout(() => {
                 document.getElementById('splash-screen').style.display = 'none';
-                iniciarEfectos();
+                crearEstrellas();
             }, 1800);
         }
 
+        // Observer para animaciones al hacer scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        const target = new Date('Dec 20, 2026 18:00:00').getTime();
+        // Estrellas animadas
+        function crearEstrellas() {
+            const bg = document.getElementById('galaxy-bg');
+            for(let i=0; i<100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 'px';
+                star.style.width = size;
+                star.style.height = size;
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                bg.appendChild(star);
+            }
+        }
+
+        // Cuenta regresiva (24 Oct 2026)
+        const target = new Date('Oct 24, 2026 18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = target - now;
-            document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-            document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         }, 1000);
-
-        let index = 0;
-        setInterval(() => {
-            index = (index + 1) % 3;
-            document.getElementById('track').style.transform = `translateX(-${index * 100}%)`;
-        }, 3500);
-
-        function iniciarEfectos() {
-            const contenedor = document.getElementById('magia');
-            const petalosContainer = document.getElementById('petalos-container');
-            
-            petalosContainer.style.display = 'block';
-            for (let i = 0; i < 35; i++) {
-                const span = document.createElement('span');
-                petalosContainer.appendChild(span);
-            }
-
-            setInterval(() => {
-                const particula = document.createElement('div');
-                particula.classList.add('particula');
-                particula.style.left = Math.random() * 100 + 'vw';
-                particula.style.top = (Math.random() * 100 + 10) + 'vh';
-                particula.style.width = Math.random() * 4 + 2 + 'px';
-                particula.style.height = particula.style.width;
-                particula.style.animationDuration = Math.random() * 4 + 4 + 's';
-                contenedor.appendChild(particula);
-                setTimeout(() => particula.remove(), 7000);
-            }, 180);
-
-            setInterval(() => {
-                const mariposa = document.createElement('div');
-                mariposa.classList.add('mariposa');
-                mariposa.innerHTML = '🦋';
-                mariposa.style.left = Math.random() * 100 + 'vw';
-                mariposa.style.top = '100vh';
-                mariposa.style.animationDuration = Math.random() * 5 + 9 + 's';
-                contenedor.appendChild(mariposa);
-                setTimeout(() => mariposa.remove(), 14000);
-            }, 1800);
-
-            setInterval(() => {
-                const btsCorazon = document.createElement('div');
-                btsCorazon.classList.add('corazon-bts');
-                btsCorazon.innerHTML = '💜'; 
-                btsCorazon.style.left = '-5vw'; 
-                btsCorazon.style.top = '0vh'; 
-                btsCorazon.style.animationDuration = Math.random() * 3 + 8 + 's';
-                contenedor.appendChild(btsCorazon);
-                setTimeout(() => btsCorazon.remove(), 11000);
-            }, 1500);
-        }
     </script>
 </body>
 </html>
