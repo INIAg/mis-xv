@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis XV - Zoé ✨🌌</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <title>Mis XV - Zoé ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --espacio-profundo: #0a0a1a;
+            --lila-profundo: #0b0614;
             --lila-bts: #A020F0;
             --rose-gold: #b76e79;
             --dorado: #d4af37;
@@ -18,166 +18,296 @@
         }
 
         * { box-sizing: border-box; }
+
         body.no-scroll { overflow: hidden; }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--espacio-profundo);
+            background-color: var(--lila-profundo);
             color: var(--blanco);
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* --- FONDO GALAXIA --- */
-        #galaxy-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+        /* --- FONDO GALAXIA ANIMADO --- */
+        .nebula {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background:
+                radial-gradient(circle at 15% 30%, rgba(160, 32, 240, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(183, 110, 121, 0.15) 0%, transparent 60%);
+            z-index: -2;
+        }
+        .galaxy-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background:
+                radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #e0b0ff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 250px 180px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 300px 90px, rgba(255,255,255,0.7), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 350px 350px;
+            animation: starsAnim 60s linear infinite;
             z-index: -1;
+        }
+        .galaxy-bg::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background:
+                radial-gradient(1px 1px at 10px 10px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 150px 150px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 60px 170px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 190px 40px, #e0b0ff, rgba(0,0,0,0));
+            background-repeat: repeat; background-size: 250px 250px;
+            animation: starsAnim 90s linear infinite;
+        }
+        @keyframes starsAnim {
+            0% { background-position: 0 0; }
+            100% { background-position: -500px 500px; }
         }
 
         /* --- SPLASH SCREEN --- */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             z-index: 10000; display: flex; justify-content: center; align-items: center;
+            overflow: hidden; background-color: var(--lila-profundo);
         }
         .puerta {
             position: absolute; top: 0; width: 50%; height: 100%;
-            background: #050505;
+            background: linear-gradient(to bottom, #11051f, var(--lila-profundo));
             transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 10001;
         }
-        .puerta-izq { left: 0; border-right: 1px solid var(--lila-bts); }
-        .puerta-der { right: 0; border-left: 1px solid var(--lila-bts); }
+        .puerta-izq { left: 0; border-right: 2px solid var(--rose-gold); }
+        .puerta-der { right: 0; border-left: 2px solid var(--rose-gold); }
         .puerta-izq.abierta { transform: translateX(-100%); }
         .puerta-der.abierta { transform: translateX(100%); }
 
-        .army-bomb-container {
-            z-index: 10005; text-align: center; cursor: pointer;
-            transition: transform 0.3s ease;
+        .bts-logo-mitad {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 45px; height: 120px;
+            background-color: var(--rose-gold); box-shadow: 0 0 20px rgba(183, 110, 121, 0.6);
+            z-index: 10002; 
         }
-        .army-bomb {
-            width: 120px; height: 120px; background: #fff; border-radius: 50%;
-            box-shadow: 0 0 50px rgba(255,255,255,0.8); animation: pulse 2s infinite;
+        .puerta-izq .bts-logo-mitad { right: 15px; clip-path: polygon(100% 0, 100% 100%, 0% 85%, 0% 15%); }
+        .puerta-der .bts-logo-mitad { left: 15px; clip-path: polygon(0 0, 0 100%, 100% 85%, 100% 15%); }
+
+        .splash-content {
+            z-index: 10005; text-align: center; transition: opacity 0.5s ease;
+            position: relative; display: flex; flex-direction: column; align-items: center;
         }
-        .handle {
-            width: 35px; height: 100px; background: #1a1a1a; margin: -10px auto 0;
-            border-radius: 0 0 10px 10px; position: relative;
+
+        /* --- ARMY BOMB --- */
+        .army-bomb-container { display: flex; flex-direction: column; align-items: center; cursor: pointer; position: relative; transition: transform 0.3s ease; -webkit-tap-highlight-color: transparent; }
+        .army-bomb-container:hover { transform: scale(1.05); }
+        .army-bomb { width: 140px; height: 140px; background-color: #ffffff; border-radius: 50%; animation: light-up 2s infinite ease-in-out; position: relative; z-index: 2; }
+        .handle { width: 40px; height: 140px; background-color: #1a1a1a; position: relative; margin-top: -15px; z-index: 1; border-radius: 0 0 10px 10px; display: flex; flex-direction: column; align-items: center; padding-top: 35px; }
+        .antenna { position: absolute; top: -10px; right: -10px; width: 25px; height: 8px; background-color: #1a1a1a; transform: rotate(45deg); z-index: 0; }
+        .antenna::after { content: ""; position: absolute; top: -3px; right: -2px; width: 5px; height: 7px; background-color: red; border-radius: 50%; }
+        .bts-logo-handle { display: flex; gap: 5px; }
+        .trapecio { border-bottom: 12px solid white; border-left: 4px solid transparent; border-right: 4px solid transparent; height: 0; width: 10px; }
+        .trapecio.izq { transform: rotate(90deg); }
+        .trapecio.der { transform: rotate(-90deg); }
+
+        @keyframes light-up {
+            0%   { box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.8); }
+            50%  { box-shadow: 0px 0px 60px 25px rgba(255, 255, 255, 1); }
+            100% { box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.8); }
         }
-        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+
+        .instruccion-entrar { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: #ccc; letter-spacing: 3px; margin-top: 40px; text-transform: uppercase; animation: latidoElegante 2s infinite ease-in-out; pointer-events: none; }
+        @keyframes latidoElegante { 0%, 100% { transform: scale(1); opacity: 0.6;} 50% { transform: scale(1.05); opacity: 1;} }
 
         /* --- HERO --- */
         .hero {
             height: 100vh;
+            background: linear-gradient(to bottom, rgba(11, 6, 20, 0.3), rgba(11, 6, 20, 0.9));
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; background: rgba(0,0,0,0.4);
+            text-align: center; position: relative; z-index: 10;
         }
-        .hero h1 { font-family: 'Syncopate', sans-serif; font-size: 4rem; letter-spacing: 15px; margin: 0; color: var(--blanco); }
-        .hero p { font-size: 1rem; letter-spacing: 5px; color: var(--rose-gold); margin-top: 20px; }
+        .hero p { letter-spacing: 8px; color: var(--rose-gold); font-size: 1rem; text-transform: uppercase; margin-bottom: 5px;}
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 5rem; margin: 0 0 10px 0; text-shadow: 0 0 30px rgba(255,255,255,0.3); letter-spacing: 5px;}
 
-        /* --- GLASSMORPHISM --- */
+        /* --- BOTONES Y TARJETAS --- */
+        .btn-lujo {
+            display: inline-block; padding: 12px 35px; margin-top: 15px; font-size: 0.85rem; letter-spacing: 2px;
+            color: var(--rose-gold); border: 1px solid var(--rose-gold); text-decoration: none; border-radius: 30px;
+            text-transform: uppercase; transition: all 0.3s ease;
+        }
+        .btn-lujo:hover { background: var(--rose-gold); color: var(--lila-profundo); box-shadow: 0 0 15px var(--rose-gold); }
+
         .glass-card {
-            background: var(--cristal); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--borde-cristal); border-radius: 15px; padding: 40px;
-            max-width: 500px; margin: 20px auto; width: 90%;
+            background: var(--cristal); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--borde-cristal); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            border-radius: 20px; padding: 40px; max-width: 450px; margin: 20px auto;
+            position: relative; overflow: hidden; width: 90%; z-index: 10;
         }
-        h2, h3 { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: 3px; color: var(--dorado); }
+        .glass-card h3 { color: var(--rose-gold); font-size: 1.6rem; margin-top: 0; font-family: 'Cinzel', serif; letter-spacing: 3px;}
 
-        /* --- SECCIONES --- */
-        section { padding: 80px 20px; text-align: center; }
-        .fade-in { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+        /* --- CONTADOR --- */
+        .timer { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;}
+        .unit { 
+            background: rgba(0,0,0,0.4); border: 1px solid var(--rose-gold); backdrop-filter: blur(5px);
+            padding: 15px; border-radius: 10px; min-width: 70px; text-align: center;
+        }
+        .unit span { display: block; font-size: 2rem; font-weight: bold; color: var(--blanco); text-shadow: 0 0 10px var(--rose-gold); }
+        .unit small { font-size: 0.7rem; letter-spacing: 2px; color: #ccc; }
+
+        /* --- SECCIONES GENÉRICAS --- */
+        section { padding: 80px 20px; text-align: center; position: relative; z-index: 10;}
+        .seccion-oscura { background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.6), transparent); }
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 1s ease-out, transform 1s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        .timer { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        .unit { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; min-width: 80px; }
-        .unit span { display: block; font-size: 1.8rem; font-weight: bold; }
+        .nombres-familia { font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1rem; line-height: 1.8; color: #e0e0e0; max-width: 600px; margin: auto; }
+        .nombres-destacados { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 600; color: var(--rose-gold); display: block; margin: 5px 0 25px 0; text-shadow: 0 0 10px rgba(183, 110, 121, 0.2); letter-spacing: 2px;}
 
-        .btn-lujo {
-            display: inline-block; padding: 12px 30px; border: 1px solid var(--rose-gold);
-            color: var(--rose-gold); text-decoration: none; border-radius: 5px;
-            transition: 0.3s; margin-top: 20px; font-size: 0.8rem; letter-spacing: 2px;
-        }
-        .btn-lujo:hover { background: var(--rose-gold); color: white; }
+        .timeline { position: relative; max-width: 400px; margin: 40px auto; padding: 20px 10px; text-align: left; }
+        .timeline::before { content: ''; position: absolute; top: 0; left: 20px; width: 2px; height: 100%; background: var(--rose-gold); }
+        .timeline-item { margin-bottom: 40px; position: relative; padding-left: 50px; }
+        .timeline-dot { position: absolute; top: 5px; left: 13px; width: 16px; height: 16px; background: var(--lila-profundo); border: 2px solid var(--rose-gold); border-radius: 50%; z-index: 2; box-shadow: 0 0 10px var(--rose-gold); }
+        .timeline-content h4 { color: var(--dorado); margin: 0 0 5px 0; font-family: 'Cinzel', serif; font-size: 1.3rem; letter-spacing: 2px;}
+        .timeline-content p { margin: 0; font-size: 0.95rem; font-weight: 300; letter-spacing: 1px;}
 
-        /* --- ESTRELLAS --- */
-        .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: star-shine 5s infinite; }
-        @keyframes star-shine { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(0.5); } }
+        .carousel { position: relative; max-width: 350px; margin: auto; overflow: hidden; border-radius: 20px; border: 2px solid var(--rose-gold); box-shadow: 0 0 30px rgba(183, 110, 121, 0.3); z-index: 10;}
+        .carousel-track { display: flex; transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .carousel-img { min-width: 100%; height: 500px; object-fit: cover; }
+
+        /* --- 🌟 MAGIA LIGERA --- */
+        #magia { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden;}
+        .particula { position: absolute; background: white; border-radius: 50%; pointer-events: none; opacity: 0; animation: flotar 5s infinite ease-in; box-shadow: 0 0 10px white;}
+        @keyframes flotar { 0% { opacity: 0; transform: translateY(0) scale(0.5); } 50% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-100px) scale(1.5); } }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; letter-spacing: 3px; color: #888; position: relative; z-index: 10;}
     </style>
 </head>
 <body class="no-scroll">
 
-    <div id="galaxy-bg"></div>
+    <div class="nebula"></div>
+    <div class="galaxy-bg"></div>
 
     <div id="splash-screen">
-        <div class="puerta puerta-izq" id="puertaIzq"></div>
-        <div class="puerta puerta-der" id="puertaDer"></div>
-        <div class="army-bomb-container" onclick="abrirInvitacion()" id="splashContent">
-            <div class="army-bomb"></div>
-            <div class="handle"></div>
-            <p style="margin-top: 20px; font-size: 0.7rem; letter-spacing: 3px;">TOCA PARA ENCENDER LA MAGIA</p>
+        <div class="puerta puerta-izq" id="puertaIzq"><div class="bts-logo-mitad"></div></div>
+        <div class="puerta puerta-der" id="puertaDer"><div class="bts-logo-mitad"></div></div>
+        <div class="splash-content" id="splashContent">
+            
+            <div class="army-bomb-container" onclick="abrirInvitacion()">
+                <div class="army-bomb"></div>
+                <div class="handle">
+                    <div class="antenna"></div>
+                    <div class="bts-logo-handle">
+                        <div class="trapecio izq"></div>
+                        <div class="trapecio der"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="instruccion-entrar">🎧 Toca la Army Bomb para encender la magia ✨</p>
         </div>
     </div>
 
+    <audio id="bg-music" loop preload="auto">
+        <source src="musica-bts.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="magia"></div>
+
     <header class="hero">
-        <h1 class="fade-in">ZOÉ</h1>
-        <p class="fade-in">24 . OCTUBRE . 2026</p>
+        <p class="fade-in">I PURPLE YOU</p>
+        <h1 class="fade-in" style="transition-delay: 0.2s;">Zoé</h1>
+        <p class="fade-in" style="transition-delay: 0.4s;">24 . OCTUBRE . 2026</p>
     </header>
 
-    <section>
-        <div class="fade-in glass-card">
-            <p style="font-size: 1.1rem; line-height: 1.8;">
-                "Incluso si me caigo y me lastimo, seguiré corriendo hacia mis sueños"
-            </p>
-            <small style="color: var(--lila-bts); letter-spacing: 2px;">EPILOGUE: YOUNG FOREVER - BTS</small>
+    <section class="seccion-oscura">
+        <div class="fade-in" style="max-width: 600px; margin: auto; font-style: italic; font-size: 1.2rem; color: #ccc; line-height: 1.8;">
+            <p>"Incluso si me caigo y me lastimo, seguiré corriendo hacia mis sueños"</p>
+            <h3 style="font-family:'Cinzel', serif; font-size: 1.3rem; color: var(--rose-gold); margin-top: 15px; letter-spacing: 2px;">Epilogue: Young Forever - BTS</h3>
         </div>
     </section>
 
     <section>
-        <div class="fade-in">
-            <h3>Con el amor de mis padres:</h3>
-            <p style="font-size: 1.2rem;">Siul López | Gabriela Ruiz de Chávez</p>
+        <div class="fade-in nombres-familia">
+            <p>Con el amor de mis padres:</p>
+            <span class="nombres-destacados">Siul López | Gabriela Ruiz de Chávez</span>
             
-            <h3 style="margin-top: 40px;">Y el apoyo de mis padrinos:</h3>
-            <p style="font-size: 1.2rem;">Gibrán Vallín | Angélica Franco</p>
+            <p style="margin-top: 35px;">Y el apoyo incondicional de mis padrinos:</p>
+            <span class="nombres-destacados">Gibrán Vallín | Angélica Franco</span>
+            
+            <p style="margin-top: 35px; max-width: 500px; margin-left: auto; margin-right: auto;">Tengo la inmensa alegría de invitarte a celebrar la magia de este día tan especial.</p>
         </div>
     </section>
 
-    <section>
-        <h2 class="fade-in">Cuenta Regresiva</h2>
+    <section class="seccion-oscura">
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem;">FALTAN PARA LA MAGIA</h2>
         <div class="timer fade-in">
             <div class="unit"><span id="days">00</span><small>DÍAS</small></div>
             <div class="unit"><span id="hours">00</span><small>HRS</small></div>
             <div class="unit"><span id="minutes">00</span><small>MIN</small></div>
+            <div class="unit"><span id="seconds">00</span><small>SEG</small></div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 20px;">DÓNDE Y CUÁNDO</h2>
+        <div class="glass-card fade-in">
+            <h3>Recepción</h3>
+            <p style="font-weight: 300; line-height: 1.8; font-size: 1.1rem;">18:00 Horas<br>Salón "El Terreno de los Abuelos"</p>
+            <p style="font-weight: 300; font-size: 0.85rem; line-height: 1.5; color: #ccc; margin-top: 15px;">Toluca Manzana 085, La Concepción,<br>54900 Tultitlán de Mariano Escobedo, Méx.</p>
+            <a href="URL_MAPS_AQUI" class="btn-lujo" target="_blank">Ubicación Vip</a>
+        </div>
+    </section>
+
+    <section class="seccion-oscura">
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">ITINERARIO MÁGICO</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>18:00 hrs</h4><p>Recepción 🥂</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>19:30 hrs</h4><p>Cena de Gala 🍽️</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>20:30 hrs</h4><p>El Vals ✨</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>21:30 hrs</h4><p>Permission to Dance 🕺💃</p></div></div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">SESIÓN EXCLUSIVA</h2>
+        <div class="carousel fade-in">
+            <div class="carousel-track" id="track">
+                <img src="https://via.placeholder.com/400x600/1a0b2e/b76e79?text=Sesión+Zoé+1" class="carousel-img">
+                <img src="https://via.placeholder.com/400x600/2b1055/d4af37?text=Sesión+Zoé+2" class="carousel-img">
+                <img src="https://via.placeholder.com/400x600/11051f/b76e79?text=Sesión+Zoé+3" class="carousel-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion-oscura">
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">DETALLES IMPORTANTES</h2>
+        <div class="glass-card fade-in" style="margin-bottom: 30px;">
+            <h3 style="color: var(--blanco);">Dress Code</h3>
+            <p style="font-weight: 300; font-size: 0.95rem; line-height: 1.6;"><strong>FORMAL / ETIQUETA RIGUROSA</strong></p>
+            <p style="font-weight: 300; font-size: 0.85rem; line-height: 1.6; color: #ccc;">Por favor, abstenerse de usar prendas de color <strong>Lila o Morado</strong>, ya que este color está reservado exclusivamente para la quinceañera.</p>
+        </div>
+        <div class="glass-card fade-in">
+            <h3 style="color: var(--blanco);">Lluvia de Sobres</h3>
+            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Tu presencia es mi regalo más grande en esta noche mágica. Sin embargo, si deseas tener un detalle adicional conmigo, habrá un buzón en la recepción para lluvia de sobres. ✉️💜</p>
         </div>
     </section>
 
     <section>
         <div class="glass-card fade-in">
-            <h3>Recepción</h3>
-            <p>18:00 HRS</p>
-            <p><strong>Salón "El Terreno de los Abuelos"</strong></p>
-            <p style="font-size: 0.9rem;">Toluca Manzana 085, La Concepción, 54900 Tultitlán de Mariano Escobedo, Méx.</p>
-            <a href="https://maps.google.com/?q=Toluca+Manzana+085+La+Concepcion+Tultitlan" class="btn-lujo" target="_blank">VER UBICACIÓN</a>
+            <h3 style="color: var(--dorado);">Confirmar Asistencia</h3>
+            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Será un honor compartir esta noche inolvidable contigo. Por favor, confirma antes del 1 de octubre.</p>
+            <a href="https://wa.me/52TUNUMERO?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Zoé%20💜" class="btn-lujo" style="border-color: var(--dorado); color: var(--dorado);" target="_blank">RSVP WhatsApp</a>
         </div>
     </section>
 
-    <section>
-        <h2 class="fade-in">Itinerario</h2>
-        <div class="fade-in" style="max-width: 400px; margin: auto; text-align: left; padding-left: 20px; border-left: 1px solid var(--lila-bts);">
-            <p><strong>18:00 hrs</strong> - Recepción</p>
-            <p><strong>21:00 hrs</strong> - Cena de Gala</p>
-            <p><strong>22:00 hrs</strong> - El Vals</p>
-            <p><strong>23:00 hrs</strong> - Permission to Dance ✨</p>
-        </div>
-    </section>
-
-    <footer style="padding: 50px; opacity: 0.6; font-size: 0.7rem; letter-spacing: 4px;">
-        ZOÉ 2026 | I PURPLE YOU 💜
+    <footer>
+        <p>ZOÉ 2026 | MAGIC SHOP ✨</p>
     </footer>
 
     <script>
         function abrirInvitacion() {
             document.body.classList.remove('no-scroll');
+            document.getElementById('bg-music').play().catch(e => console.log(e));
             document.getElementById('splashContent').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('puertaIzq').classList.add('abierta');
@@ -185,43 +315,49 @@
             }, 300);
             setTimeout(() => {
                 document.getElementById('splash-screen').style.display = 'none';
-                crearEstrellas();
+                iniciarEfectos();
             }, 1800);
         }
 
-        // Observer para animaciones al hacer scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-        // Estrellas animadas
-        function crearEstrellas() {
-            const bg = document.getElementById('galaxy-bg');
-            for(let i=0; i<100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 3 + 'px';
-                star.style.width = size;
-                star.style.height = size;
-                star.style.left = Math.random() * 100 + 'vw';
-                star.style.top = Math.random() * 100 + 'vh';
-                star.style.animationDelay = Math.random() * 5 + 's';
-                bg.appendChild(star);
-            }
-        }
-
-        // Cuenta regresiva (24 Oct 2026)
+        // Fecha actualizada al 24 de Octubre de 2026, 18:00 hrs
         const target = new Date('Oct 24, 2026 18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = target - now;
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+            document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
         }, 1000);
+
+        let index = 0;
+        setInterval(() => {
+            index = (index + 1) % 3;
+            document.getElementById('track').style.transform = `translateX(-${index * 100}%)`;
+        }, 3500);
+
+        function iniciarEfectos() {
+            const contenedor = document.getElementById('magia');
+            // Solo se dejaron las partículas (estrellitas fugaces/luz)
+            setInterval(() => {
+                const particula = document.createElement('div');
+                particula.classList.add('particula');
+                particula.style.left = Math.random() * 100 + 'vw';
+                particula.style.top = (Math.random() * 100 + 10) + 'vh';
+                particula.style.width = Math.random() * 4 + 2 + 'px';
+                particula.style.height = particula.style.width;
+                particula.style.animationDuration = Math.random() * 4 + 4 + 's';
+                contenedor.appendChild(particula);
+                setTimeout(() => particula.remove(), 7000);
+            }, 180);
+        }
     </script>
 </body>
 </html>
