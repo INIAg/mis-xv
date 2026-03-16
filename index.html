@@ -30,41 +30,119 @@
             scroll-behavior: smooth;
         }
 
-        /* --- FONDO GALAXIA ANIMADO --- */
-        .nebula {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background:
-                radial-gradient(circle at 15% 30%, rgba(160, 32, 240, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(183, 110, 121, 0.15) 0%, transparent 60%);
+        /* --- FONDO GALAXIA ANIMADO (NUEVO) --- */
+        #galaxy {
             z-index: -2;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--lila-profundo); /* Ajustado para mantener la temática lila */
+            -webkit-transition: background 0.8s ease-out;
+            -moz-transition: background 0.8s ease-out;
+            -o-transition: background 0.8s ease-out;
+            -ms-transition: background 0.8s ease-out;
+            transition: background 0.8s ease-out;
         }
-        .galaxy-bg {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background:
-                radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
-                radial-gradient(1.5px 1.5px at 90px 40px, #ffffff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 160px 120px, #e0b0ff, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 250px 180px, #ffffff, rgba(0,0,0,0)),
-                radial-gradient(1.5px 1.5px at 300px 90px, rgba(255,255,255,0.7), rgba(0,0,0,0));
-            background-repeat: repeat;
-            background-size: 350px 350px;
-            animation: starsAnim 60s linear infinite;
-            z-index: -1;
+        #galaxy,
+        #galaxy .bg {
+            width: 100%;
+            height: 100%;
         }
-        .galaxy-bg::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background:
-                radial-gradient(1px 1px at 10px 10px, #ffffff, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 150px 150px, #ffffff, rgba(0,0,0,0)),
-                radial-gradient(1.5px 1.5px at 60px 170px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 190px 40px, #e0b0ff, rgba(0,0,0,0));
-            background-repeat: repeat; background-size: 250px 250px;
-            animation: starsAnim 90s linear infinite;
+        #galaxy * {
+            position: absolute;
         }
-        @keyframes starsAnim {
-            0% { background-position: 0 0; }
-            100% { background-position: -500px 500px; }
+        #galaxy .bg.center {
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 200px;
+            margin: -100px 0 0 -200px;
+            opacity: 0.8;
+            -webkit-border-radius: 500px;
+            -moz-border-radius: 500px;
+            border-radius: 500px;
+        }
+        #galaxy [class^="stars"] {
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+        }
+        #galaxy .stars-back {
+            background: url('https://raw.githubusercontent.com/gurde/css3-animated-galaxy/master/img/back.png');
+            -webkit-animation: orbit-clock-wise 440s infinite linear;
+            -moz-animation: orbit-clock-wise 440s infinite linear;
+            -o-animation: orbit-clock-wise 440s infinite linear;
+            -ms-animation: orbit-clock-wise 440s infinite linear;
+            animation: orbit-clock-wise 440s infinite linear;
+        }
+        #galaxy .stars-middle {
+            background: url('https://raw.githubusercontent.com/gurde/css3-animated-galaxy/master/img/middle.png');
+            -webkit-animation: orbit-counter-clock-wise 360s infinite linear;
+            -moz-animation: orbit-counter-clock-wise 360s infinite linear;
+            -o-animation: orbit-counter-clock-wise 360s infinite linear;
+            -ms-animation: orbit-counter-clock-wise 360s infinite linear;
+            animation: orbit-counter-clock-wise 360s infinite linear;
+        }
+        #galaxy .stars-front {
+            background: url('https://raw.githubusercontent.com/gurde/css3-animated-galaxy/master/img/front.png');
+            -webkit-animation: orbit-clock-wise 160s infinite linear;
+            -moz-animation: orbit-clock-wise 160s infinite linear;
+            -o-animation: orbit-clock-wise 160s infinite linear;
+            -ms-animation: orbit-clock-wise 160s infinite linear;
+            animation: orbit-clock-wise 160s infinite linear;
+        }
+        @-webkit-keyframes orbit-clock-wise {
+            0% { opacity: 0.4; -webkit-transform: rotate(0deg); }
+            2% { opacity: 0.8; }
+            4% { opacity: 0.2; }
+            5% { opacity: 0.8; }
+            100% { opacity: 0.4; -webkit-transform: rotate(360deg); }
+        }
+        @-webkit-keyframes orbit-counter-clock-wise {
+            from { -webkit-transform: rotate(360deg); } to { -webkit-transform: rotate(0deg); }
+        }
+        @-moz-keyframes orbit-clock-wise {
+            0% { opacity: 0.4; -moz-transform: rotate(0deg); }
+            2% { opacity: 0.8; }
+            4% { opacity: 0.2; }
+            5% { opacity: 0.8; }
+            100% { opacity: 0.4; -moz-transform: rotate(360deg); }
+        }
+        @-moz-keyframes orbit-counter-clock-wise {
+            from { -moz-transform: rotate(360deg); } to { -moz-transform: rotate(0deg); }
+        }
+        @-o-keyframes orbit-clock-wise {
+            0% { opacity: 0.4; -o-transform: rotate(0deg); }
+            2% { opacity: 0.8; }
+            4% { opacity: 0.2; }
+            5% { opacity: 0.8; }
+            100% { opacity: 0.4; -o-transform: rotate(360deg); }
+        }
+        @-o-keyframes orbit-counter-clock-wise {
+            from { -o-transform: rotate(360deg); } to { -o-transform: rotate(0deg); }
+        }
+        @-ms-keyframes orbit-clock-wise {
+            0% { opacity: 0.4; -ms-transform: rotate(0deg); }
+            2% { opacity: 0.8; }
+            4% { opacity: 0.2; }
+            5% { opacity: 0.8; }
+            100% { opacity: 0.4; -ms-transform: rotate(360deg); }
+        }
+        @-ms-keyframes orbit-counter-clock-wise {
+            from { -ms-transform: rotate(360deg); } to { -ms-transform: rotate(0deg); }
+        }
+        @keyframes orbit-clock-wise {
+            0% { opacity: 0.4; transform: rotate(0deg); }
+            2% { opacity: 0.8; }
+            4% { opacity: 0.2; }
+            5% { opacity: 0.8; }
+            100% { opacity: 0.4; transform: rotate(360deg); }
+        }
+        @keyframes orbit-counter-clock-wise {
+            from { transform: rotate(360deg); } to { transform: rotate(0deg); }
         }
 
         /* --- SPLASH SCREEN --- */
@@ -184,8 +262,12 @@
 </head>
 <body class="no-scroll">
 
-    <div class="nebula"></div>
-    <div class="galaxy-bg"></div>
+    <div id="galaxy">
+        <div class="bg center"></div>
+        <div class="stars-back"></div>
+        <div class="stars-middle"></div>
+        <div class="stars-front"></div>
+    </div>
 
     <div id="splash-screen">
         <div class="puerta puerta-izq" id="puertaIzq"><div class="bts-logo-mitad"></div></div>
@@ -326,7 +408,6 @@
         }, { threshold: 0.15 });
         document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-        // Fecha actualizada al 24 de Octubre de 2026, 18:00 hrs
         const target = new Date('Oct 24, 2026 18:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -345,7 +426,6 @@
 
         function iniciarEfectos() {
             const contenedor = document.getElementById('magia');
-            // Solo se dejaron las partículas (estrellitas fugaces/luz)
             setInterval(() => {
                 const particula = document.createElement('div');
                 particula.classList.add('particula');
