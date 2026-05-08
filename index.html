@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis XV - Zoé ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Se añadió Dancing Script para la fuente cursiva -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --lila-profundo: #0b0614;
             --lila-bts: #A020F0;
             --rose-gold: #b76e79;
-            --dorado: #d4af37;
+            --violeta: #9b4dca; /* Reemplazo del dorado/amarillo */
             --blanco: #ffffff;
             --cristal: rgba(255, 255, 255, 0.05);
             --borde-cristal: rgba(255, 255, 255, 0.2);
@@ -129,9 +130,10 @@
             text-align: center; position: relative; z-index: 10;
         }
         .hero p { letter-spacing: 8px; color: var(--rose-gold); font-size: 1rem; text-transform: uppercase; margin-bottom: 5px;}
-        .hero h1 { font-family: 'Cinzel', serif; font-size: 5rem; margin: 0 0 10px 0; text-shadow: 0 0 30px rgba(255,255,255,0.3); letter-spacing: 5px;}
+        /* Fuente cursiva para Zoé */
+        .hero h1 { font-family: 'Dancing Script', cursive; font-size: 6.5rem; margin: 0 0 10px 0; text-shadow: 0 0 30px rgba(255,255,255,0.3); letter-spacing: 5px; font-weight: 700;}
 
-        /* --- ACCESO VIP (NUEVO) --- */
+        /* --- ACCESO VIP --- */
         .login-container {
             background: var(--cristal); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--borde-cristal); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
@@ -146,11 +148,11 @@
         .login-input:focus { box-shadow: 0 0 10px var(--rose-gold); }
         
         .zona-pases-lila {
-            background: rgba(183, 110, 121, 0.15); /* Fondo sutil rose-gold/lila */
+            background: rgba(183, 110, 121, 0.15); 
             border: 2px dashed var(--rose-gold);
             border-radius: 20px; padding: 30px; max-width: 450px; margin: 0 auto 40px auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center;
-            display: none; /* Oculto hasta poner el código */
+            display: none; 
             z-index: 10; position: relative; width: 90%;
             backdrop-filter: blur(10px);
         }
@@ -200,7 +202,7 @@
         .timeline::before { content: ''; position: absolute; top: 0; left: 20px; width: 2px; height: 100%; background: var(--rose-gold); }
         .timeline-item { margin-bottom: 40px; position: relative; padding-left: 50px; }
         .timeline-dot { position: absolute; top: 5px; left: 13px; width: 16px; height: 16px; background: var(--lila-profundo); border: 2px solid var(--rose-gold); border-radius: 50%; z-index: 2; box-shadow: 0 0 10px var(--rose-gold); }
-        .timeline-content h4 { color: var(--dorado); margin: 0 0 5px 0; font-family: 'Cinzel', serif; font-size: 1.3rem; letter-spacing: 2px;}
+        .timeline-content h4 { color: var(--violeta); margin: 0 0 5px 0; font-family: 'Cinzel', serif; font-size: 1.3rem; letter-spacing: 2px;}
         .timeline-content p { margin: 0; font-size: 0.95rem; font-weight: 300; letter-spacing: 1px;}
 
         .carousel { position: relative; max-width: 350px; margin: auto; overflow: hidden; border-radius: 20px; border: 2px solid var(--rose-gold); box-shadow: 0 0 30px rgba(183, 110, 121, 0.3); z-index: 10;}
@@ -256,8 +258,85 @@
         <p class="fade-in" style="transition-delay: 0.4s;">24 . OCTUBRE . 2026</p>
     </header>
 
+    <section class="seccion-oscura">
+        <div class="fade-in" style="max-width: 600px; margin: auto; font-style: italic; font-size: 1.2rem; color: #ccc; line-height: 1.8;">
+            <p>"Incluso si me caigo y me lastimo, seguiré corriendo hacia mis sueños"</p>
+            <h3 style="font-family:'Cinzel', serif; font-size: 1.3rem; color: var(--rose-gold); margin-top: 15px; letter-spacing: 2px;">Epilogue: Young Forever - BTS</h3>
+        </div>
+    </section>
+
+    <section>
+        <div class="fade-in nombres-familia">
+            <p>Con el amor de mis padres:</p>
+            <span class="nombres-destacados">Siul López | Gabriela Ruiz de Chávez</span>
+            
+            <p style="margin-top: 35px;">Y el apoyo incondicional de mis padrinos:</p>
+            <span class="nombres-destacados">Sergio Guzmán | Patricia Solano</span>
+            
+            <p style="margin-top: 35px; max-width: 500px; margin-left: auto; margin-right: auto;">Tengo la inmensa alegría de invitarte a celebrar la magia de este día tan especial.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 20px;">DÓNDE Y CUÁNDO</h2>
+        <div class="glass-card fade-in">
+            <p style="font-weight: 600; line-height: 1.8; font-size: 1.3rem; color: var(--rose-gold);">Salón "El Terreno de los Abuelos"</p>
+            <p style="font-weight: 300; font-size: 1.1rem; color: var(--blanco);">24 / Octubre / 2026</p>
+            <p style="font-weight: 300; font-size: 0.85rem; line-height: 1.5; color: #ccc; margin-top: 15px;">Toluca Manzana 085, La Concepción,<br>54900 Tultitlán de Mariano Escobedo, Méx.</p>
+            <a href="https://maps.app.goo.gl/PoF1bGnXYmJG2dmD9" class="btn-lujo" target="_blank">Ubicación Vip</a>
+        </div>
+    </section>
+
+    <section class="seccion-oscura">
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">ITINERARIO MÁGICO</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>17:30 hrs</h4><p>Recepción 🥂</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>18:30 hrs</h4><p>Cena de Gala 🍽️</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>19:30 hrs</h4><p>El Vals ✨</p></div></div>
+            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>21:00 hrs</h4><p>Permission to Dance 🕺💃</p></div></div>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">SESIÓN EXCLUSIVA</h2>
+        <div class="carousel fade-in">
+            <div class="carousel-track" id="track">
+                <!-- Reemplazar las rutas con las 7 fotos solicitadas -->
+                <img src="foto1.jpg" class="carousel-img" alt="Sesión Zoé 1">
+                <img src="foto2.jpg" class="carousel-img" alt="Sesión Zoé 2">
+                <img src="foto3.jpg" class="carousel-img" alt="Sesión Zoé 3">
+                <img src="foto4.jpg" class="carousel-img" alt="Sesión Zoé 4">
+                <img src="foto5.jpg" class="carousel-img" alt="Sesión Zoé 5">
+                <img src="foto6.jpg" class="carousel-img" alt="Sesión Zoé 6">
+                <img src="foto7.jpg" class="carousel-img" alt="Sesión Zoé 7">
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion-oscura">
+        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">DETALLES IMPORTANTES</h2>
+        <div class="glass-card fade-in" style="margin-bottom: 30px;">
+            <!-- Cambio de color a los títulos de Dress Code y Lluvia de Sobres -->
+            <h3 style="color: var(--rose-gold);">Dress Code</h3>
+            <p style="font-weight: 300; font-size: 0.95rem; line-height: 1.6;"><strong>FORMAL / ETIQUETA RIGUROSA</strong></p>
+            <p style="font-weight: 300; font-size: 0.85rem; line-height: 1.6; color: #ccc;">Por favor, abstenerse de usar prendas de color <strong>Lila o Morado</strong>, ya que este color está reservado exclusivamente para la quinceañera.</p>
+        </div>
+        <div class="glass-card fade-in">
+            <h3 style="color: var(--rose-gold);">Lluvia de Sobres</h3>
+            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Tu presencia es mi regalo más grande en esta noche mágica. Sin embargo, si deseas tener un detalle adicional conmigo, habrá un buzón en la recepción para lluvia de sobres. ✉️💜</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="glass-card fade-in">
+            <h3 style="color: var(--violeta);">Confirmar Asistencia</h3>
+            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Será un honor compartir esta noche inolvidable contigo. Por favor, confirma antes del 1 de octubre.</p>
+            <a href="https://wa.me/525577329785?text=¡Hola!%20Confirmo%20mi%20asistencia%20y%20ocupo%20mi%20código%20💜" class="btn-lujo" style="border-color: var(--violeta); color: var(--violeta);" target="_blank">RSVP WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- La sección de los códigos/invitados se movió atrás (después) de la confirmación -->
     <section id="seccion-acceso" style="padding-top: 0;">
-        
         <div id="login-seccion" class="login-container fade-in">
             <h3 style="color: var(--rose-gold); font-family: 'Cinzel', serif; margin-top: 0;">🎟️ Acceso VIP</h3>
             <p style="font-weight: 300; font-size: 0.95rem;">Ingresa tu código de invitación para ver tus pases:</p>
@@ -277,27 +356,9 @@
             </div>
             <p style="letter-spacing: 3px; font-weight: 600; font-size: 0.9rem;">PASES PERSONALES</p>
         </div>
-
-    </section>
-    <section class="seccion-oscura">
-        <div class="fade-in" style="max-width: 600px; margin: auto; font-style: italic; font-size: 1.2rem; color: #ccc; line-height: 1.8;">
-            <p>"Incluso si me caigo y me lastimo, seguiré corriendo hacia mis sueños"</p>
-            <h3 style="font-family:'Cinzel', serif; font-size: 1.3rem; color: var(--rose-gold); margin-top: 15px; letter-spacing: 2px;">Epilogue: Young Forever - BTS</h3>
-        </div>
     </section>
 
-    <section>
-        <div class="fade-in nombres-familia">
-            <p>Con el amor de mis padres:</p>
-            <span class="nombres-destacados">Siul López | Gabriela Ruiz de Chávez</span>
-            
-            <p style="margin-top: 35px;">Y el apoyo incondicional de mis padrinos:</p>
-            <span class="nombres-destacados">Gibrán Vallín | Angélica Franco</span>
-            
-            <p style="margin-top: 35px; max-width: 500px; margin-left: auto; margin-right: auto;">Tengo la inmensa alegría de invitarte a celebrar la magia de este día tan especial.</p>
-        </div>
-    </section>
-
+    <!-- La cuenta regresiva se movió hasta el final -->
     <section class="seccion-oscura">
         <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem;">FALTAN PARA LA MAGIA</h2>
         <div class="timer fade-in">
@@ -305,58 +366,6 @@
             <div class="unit"><span id="hours">00</span><small>HRS</small></div>
             <div class="unit"><span id="minutes">00</span><small>MIN</small></div>
             <div class="unit"><span id="seconds">00</span><small>SEG</small></div>
-        </div>
-    </section>
-
-    <section>
-        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 20px;">DÓNDE Y CUÁNDO</h2>
-        <div class="glass-card fade-in">
-            <h3>Recepción</h3>
-            <p style="font-weight: 300; line-height: 1.8; font-size: 1.1rem;">18:00 Horas<br>Salón "El Terreno de los Abuelos"</p>
-            <p style="font-weight: 300; font-size: 0.85rem; line-height: 1.5; color: #ccc; margin-top: 15px;">Toluca Manzana 085, La Concepción,<br>54900 Tultitlán de Mariano Escobedo, Méx.</p>
-            <a href="https://maps.app.goo.gl/PoF1bGnXYmJG2dmD9" class="btn-lujo" target="_blank">Ubicación Vip</a>
-        </div>
-    </section>
-
-    <section class="seccion-oscura">
-        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">ITINERARIO MÁGICO</h2>
-        <div class="timeline">
-            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>18:00 hrs</h4><p>Recepción 🥂</p></div></div>
-            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>19:30 hrs</h4><p>Cena de Gala 🍽️</p></div></div>
-            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>20:30 hrs</h4><p>El Vals ✨</p></div></div>
-            <div class="timeline-item fade-in"><div class="timeline-dot"></div><div class="timeline-content"><h4>21:30 hrs</h4><p>Permission to Dance 🕺💃</p></div></div>
-        </div>
-    </section>
-
-    <section>
-        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">SESIÓN EXCLUSIVA</h2>
-        <div class="carousel fade-in">
-            <div class="carousel-track" id="track">
-                <img src="https://via.placeholder.com/400x600/1a0b2e/b76e79?text=Sesión+Zoé+1" class="carousel-img">
-                <img src="https://via.placeholder.com/400x600/2b1055/d4af37?text=Sesión+Zoé+2" class="carousel-img">
-                <img src="https://via.placeholder.com/400x600/11051f/b76e79?text=Sesión+Zoé+3" class="carousel-img">
-            </div>
-        </div>
-    </section>
-
-    <section class="seccion-oscura">
-        <h2 class="fade-in" style="letter-spacing: 4px; font-weight: 300; font-size: 1rem; margin-bottom: 30px;">DETALLES IMPORTANTES</h2>
-        <div class="glass-card fade-in" style="margin-bottom: 30px;">
-            <h3 style="color: var(--blanco);">Dress Code</h3>
-            <p style="font-weight: 300; font-size: 0.95rem; line-height: 1.6;"><strong>FORMAL / ETIQUETA RIGUROSA</strong></p>
-            <p style="font-weight: 300; font-size: 0.85rem; line-height: 1.6; color: #ccc;">Por favor, abstenerse de usar prendas de color <strong>Lila o Morado</strong>, ya que este color está reservado exclusivamente para la quinceañera.</p>
-        </div>
-        <div class="glass-card fade-in">
-            <h3 style="color: var(--blanco);">Lluvia de Sobres</h3>
-            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Tu presencia es mi regalo más grande en esta noche mágica. Sin embargo, si deseas tener un detalle adicional conmigo, habrá un buzón en la recepción para lluvia de sobres. ✉️💜</p>
-        </div>
-    </section>
-
-    <section>
-        <div class="glass-card fade-in">
-            <h3 style="color: var(--dorado);">Confirmar Asistencia</h3>
-            <p style="font-weight: 300; font-size: 0.9rem; line-height: 1.6;">Será un honor compartir esta noche inolvidable contigo. Por favor, confirma antes del 1 de octubre.</p>
-            <a href="https://wa.me/52TUNUMERO?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Zoé%20💜" class="btn-lujo" style="border-color: var(--dorado); color: var(--dorado);" target="_blank">RSVP WhatsApp</a>
         </div>
     </section>
 
@@ -369,71 +378,68 @@
         // BASE DE DATOS DE INVITADOS (CÓDIGOS)
         // ==========================================
         const baseDatosInvitados = {
-        const listaInvitados = {
-    "MARG-A8T": { familia: "Margarita", pases: 2 },
-    "JAVI-X7L": { familia: "Javier", pases: 4 },
-    "MARI-L9X": { familia: "Maribel", pases: 2 },
-    "FRAN-J3M": { familia: "Francisco", pases: 1 },
-    "LUIS-W2K": { familia: "Luis H", pases: 3 },
-    "NORA-P5Q": { familia: "Nora", pases: 3 },
-    "PAZ-R8N": { familia: "Paz", pases: 4 },
-    "PAOL-V1Y": { familia: "Paola", pases: 2 },
-    "HORT-D6B": { familia: "Hortensia", pases: 3 },
-    "JANT-Z4F": { familia: "J Antonio", pases: 2 },
-    "OZME-T9C": { familia: "Ozmel", pases: 2 },
-    "VIOL-G2H": { familia: "Violeta", pases: 2 },
-    "ERIC-K7P": { familia: "Eric", pases: 3 },
-    "MONI-Q5L": { familia: "Mónica", pases: 3 },
-    "ALMA-X3W": { familia: "Alma", pases: 4 },
-    "YERE-N8D": { familia: "Yereth", pases: 3 },
-    "PATR-B2M": { familia: "Patricia", pases: 4 },
-    "HELE-C6T": { familia: "Helena", pases: 3 },
-    "JUAN-M1R": { familia: "Juan", pases: 6 },
-    "ANDR-F9V": { familia: "Andrea", pases: 4 },
-    "XOCH-Y4J": { familia: "Xochitl", pases: 4 },
-    "MONS-L7Z": { familia: "Monserrat", pases: 4 },
-    "IRVI-W3P": { familia: "Irving", pases: 4 },
-    "ARAC-K8G": { familia: "Aracely", pases: 1 },
-    "ITZE-H5X": { familia: "Itzel", pases: 2 },
-    "SAMU-T2N": { familia: "Samuel", pases: 4 },
-    "CARL-P6D": { familia: "Carlos", pases: 3 },
-    "JORG-V9Q": { familia: "Jorge", pases: 4 },
-    "LUIS-B4M": { familia: "Luis", pases: 2 },
-    "NURY-R1K": { familia: "Nury", pases: 5 },
-    "IGNA-G7F": { familia: "Ignacio", pases: 2 },
-    "EDNA-X5C": { familia: "Edna", pases: 3 },
-    "FABI-N3Y": { familia: "Fabian", pases: 4 },
-    "FRED-M8W": { familia: "Fredy", pases: 3 },
-    "ARLE-Z2L": { familia: "Arlene", pases: 2 },
-    "RAMO-D9H": { familia: "Ramón", pases: 2 },
-    "LOUR-J4T": { familia: "Lourdes", pases: 1 },
-    "SARA-Q6P": { familia: "Sarai", pases: 5 },
-    "PILA-C1V": { familia: "Pilar", pases: 2 },
-    "DULC-F8R": { familia: "Dulce", pases: 2 },
-    "LETI-K3B": { familia: "Leticia", pases: 2 },
-    "YAEL-L5N": { familia: "Yael", pases: 2 },
-    "ALIT-W7X": { familia: "Alitzel", pases: 4 },
-    "JOSE-T4M": { familia: "José", pases: 5 },
-    "ISMA-P2Y": { familia: "Ismael", pases: 5 },
-    "HUMB-H9C": { familia: "Humberto", pases: 2 },
-    "GIBR-V3G": { familia: "Gibran", pases: 2 },
-    "PABL-R8F": { familia: "Pablo", pases: 2 },
-    "OSVA-N6Q": { familia: "Osvaldo", pases: 2 },
-    "FERN-B1D": { familia: "Fernanda", pases: 2 },
-    "KARI-X9K": { familia: "Karime", pases: 8 },
-    "MONN-M4Z": { familia: "Monica N", pases: 4 },
-    "ALEJ-C7W": { familia: "Alejandro", pases: 2 },
-    "DANI-F2L": { familia: "Daniel", pases: 2 },
-    "ISRA-Y5P": { familia: "Israel", pases: 2 },
-    "BERN-G8T": { familia: "Bernardo", pases: 1 },
-    "SIUL-J3N": { familia: "Siul", pases: 3 },
-    "HAYV-D6X": { familia: "Hayva", pases: 4 },
-    "CENI-K1M": { familia: "Cenit", pases: 3 },
-    "ARAC-W9R": { familia: "Araceli", pases: 4 },
-    "LIZ-Z4V": { familia: "Liz", pases: 4 },
-    "AZ-Q2B": { familia: "AZ", pases: 8 }
-
-            // Agrega aquí los demás códigos siguiendo este mismo formato
+            "MARG-A8T": { familia: "Margarita", pases: 2 },
+            "JAVI-X7L": { familia: "Javier", pases: 4 },
+            "MARI-L9X": { familia: "Maribel", pases: 2 },
+            "FRAN-J3M": { familia: "Francisco", pases: 1 },
+            "LUIS-W2K": { familia: "Luis H", pases: 3 },
+            "NORA-P5Q": { familia: "Nora", pases: 3 },
+            "PAZ-R8N": { familia: "Paz", pases: 4 },
+            "PAOL-V1Y": { familia: "Paola", pases: 2 },
+            "HORT-D6B": { familia: "Hortensia", pases: 3 },
+            "JANT-Z4F": { familia: "J Antonio", pases: 2 },
+            "OZME-T9C": { familia: "Ozmel", pases: 2 },
+            "VIOL-G2H": { familia: "Violeta", pases: 2 },
+            "ERIC-K7P": { familia: "Eric", pases: 3 },
+            "MONI-Q5L": { familia: "Mónica", pases: 3 },
+            "ALMA-X3W": { familia: "Alma", pases: 4 },
+            "YERE-N8D": { familia: "Yereth", pases: 3 },
+            "PATR-B2M": { familia: "Patricia", pases: 4 },
+            "HELE-C6T": { familia: "Helena", pases: 3 },
+            "JUAN-M1R": { familia: "Juan", pases: 6 },
+            "ANDR-F9V": { familia: "Andrea", pases: 4 },
+            "XOCH-Y4J": { familia: "Xochitl", pases: 4 },
+            "MONS-L7Z": { familia: "Monserrat", pases: 4 },
+            "IRVI-W3P": { familia: "Irving", pases: 4 },
+            "ARAC-K8G": { familia: "Aracely", pases: 1 },
+            "ITZE-H5X": { familia: "Itzel", pases: 2 },
+            "SAMU-T2N": { familia: "Samuel", pases: 4 },
+            "CARL-P6D": { familia: "Carlos", pases: 3 },
+            "JORG-V9Q": { familia: "Jorge", pases: 4 },
+            "LUIS-B4M": { familia: "Luis", pases: 2 },
+            "NURY-R1K": { familia: "Nury", pases: 5 },
+            "IGNA-G7F": { familia: "Ignacio", pases: 2 },
+            "EDNA-X5C": { familia: "Edna", pases: 3 },
+            "FABI-N3Y": { familia: "Fabian", pases: 4 },
+            "FRED-M8W": { familia: "Fredy", pases: 3 },
+            "ARLE-Z2L": { familia: "Arlene", pases: 2 },
+            "RAMO-D9H": { familia: "Ramón", pases: 2 },
+            "LOUR-J4T": { familia: "Lourdes", pases: 1 },
+            "SARA-Q6P": { familia: "Sarai", pases: 5 },
+            "PILA-C1V": { familia: "Pilar", pases: 2 },
+            "DULC-F8R": { familia: "Dulce", pases: 2 },
+            "LETI-K3B": { familia: "Leticia", pases: 2 },
+            "YAEL-L5N": { familia: "Yael", pases: 2 },
+            "ALIT-W7X": { familia: "Alitzel", pases: 4 },
+            "JOSE-T4M": { familia: "José", pases: 5 },
+            "ISMA-P2Y": { familia: "Ismael", pases: 5 },
+            "HUMB-H9C": { familia: "Humberto", pases: 2 },
+            "GIBR-V3G": { familia: "Gibran", pases: 2 },
+            "PABL-R8F": { familia: "Pablo", pases: 2 },
+            "OSVA-N6Q": { familia: "Osvaldo", pases: 2 },
+            "FERN-B1D": { familia: "Fernanda", pases: 2 },
+            "KARI-X9K": { familia: "Karime", pases: 8 },
+            "MONN-M4Z": { familia: "Monica N", pases: 4 },
+            "ALEJ-C7W": { familia: "Alejandro", pases: 2 },
+            "DANI-F2L": { familia: "Daniel", pases: 2 },
+            "ISRA-Y5P": { familia: "Israel", pases: 2 },
+            "BERN-G8T": { familia: "Bernardo", pases: 1 },
+            "SIUL-J3N": { familia: "Siul", pases: 3 },
+            "HAYV-D6X": { familia: "Hayva", pases: 4 },
+            "CENI-K1M": { familia: "Cenit", pases: 3 },
+            "ARAC-W9R": { familia: "Araceli", pases: 4 },
+            "LIZ-Z4V": { familia: "Liz", pases: 4 },
+            "AZ-Q2B": { familia: "AZ", pases: 8 }
         };
 
         function validarInvitacion() {
@@ -489,9 +495,10 @@
             document.getElementById('seconds').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
         }, 1000);
 
+        // Se ajustó a 7 fotos el carrusel
         let index = 0;
         setInterval(() => {
-            index = (index + 1) % 3;
+            index = (index + 1) % 7;
             document.getElementById('track').style.transform = `translateX(-${index * 100}%)`;
         }, 3500);
 
