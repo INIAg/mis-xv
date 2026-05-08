@@ -30,7 +30,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- FONDO GALAXIA ANIMADO (NUEVO) --- */
+        /* --- FONDO GALAXIA ANIMADO --- */
         #galaxy {
             z-index: -2;
             position: fixed;
@@ -38,107 +38,31 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--lila-profundo); /* Ajustado para mantener la temática lila */
-            -webkit-transition: background 0.8s ease-out;
-            -moz-transition: background 0.8s ease-out;
-            -o-transition: background 0.8s ease-out;
-            -ms-transition: background 0.8s ease-out;
+            background: var(--lila-profundo);
             transition: background 0.8s ease-out;
         }
-        #galaxy,
-        #galaxy .bg {
-            width: 100%;
-            height: 100%;
-        }
-        #galaxy * {
-            position: absolute;
-        }
+        #galaxy, #galaxy .bg { width: 100%; height: 100%; }
+        #galaxy * { position: absolute; }
         #galaxy .bg.center {
-            top: 50%;
-            left: 50%;
-            width: 400px;
-            height: 200px;
-            margin: -100px 0 0 -200px;
-            opacity: 0.8;
-            -webkit-border-radius: 500px;
-            -moz-border-radius: 500px;
-            border-radius: 500px;
+            top: 50%; left: 50%; width: 400px; height: 200px;
+            margin: -100px 0 0 -200px; opacity: 0.8; border-radius: 500px;
         }
-        #galaxy [class^="stars"] {
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-        }
+        #galaxy [class^="stars"] { top: -50%; left: -50%; width: 200%; height: 200%; }
         #galaxy .stars-back {
             background: url('https://raw.githubusercontent.com/gurde/css3-animated-galaxy/master/img/back.png');
-            -webkit-animation: orbit-clock-wise 440s infinite linear;
-            -moz-animation: orbit-clock-wise 440s infinite linear;
-            -o-animation: orbit-clock-wise 440s infinite linear;
-            -ms-animation: orbit-clock-wise 440s infinite linear;
             animation: orbit-clock-wise 440s infinite linear;
         }
         #galaxy .stars-middle {
             background: url('https://raw.githubusercontent.com/gurde/css3-animated-galaxy/master/img/middle.png');
-            -webkit-animation: orbit-counter-clock-wise 360s infinite linear;
-            -moz-animation: orbit-counter-clock-wise 360s infinite linear;
-            -o-animation: orbit-counter-clock-wise 360s infinite linear;
-            -ms-animation: orbit-counter-clock-wise 360s infinite linear;
             animation: orbit-counter-clock-wise 360s infinite linear;
         }
         #galaxy .stars-front {
             background: url('https://raw.githubusercontent.com/gurde/css3-animated-galaxy/master/img/front.png');
-            -webkit-animation: orbit-clock-wise 160s infinite linear;
-            -moz-animation: orbit-clock-wise 160s infinite linear;
-            -o-animation: orbit-clock-wise 160s infinite linear;
-            -ms-animation: orbit-clock-wise 160s infinite linear;
             animation: orbit-clock-wise 160s infinite linear;
-        }
-        @-webkit-keyframes orbit-clock-wise {
-            0% { opacity: 0.4; -webkit-transform: rotate(0deg); }
-            2% { opacity: 0.8; }
-            4% { opacity: 0.2; }
-            5% { opacity: 0.8; }
-            100% { opacity: 0.4; -webkit-transform: rotate(360deg); }
-        }
-        @-webkit-keyframes orbit-counter-clock-wise {
-            from { -webkit-transform: rotate(360deg); } to { -webkit-transform: rotate(0deg); }
-        }
-        @-moz-keyframes orbit-clock-wise {
-            0% { opacity: 0.4; -moz-transform: rotate(0deg); }
-            2% { opacity: 0.8; }
-            4% { opacity: 0.2; }
-            5% { opacity: 0.8; }
-            100% { opacity: 0.4; -moz-transform: rotate(360deg); }
-        }
-        @-moz-keyframes orbit-counter-clock-wise {
-            from { -moz-transform: rotate(360deg); } to { -moz-transform: rotate(0deg); }
-        }
-        @-o-keyframes orbit-clock-wise {
-            0% { opacity: 0.4; -o-transform: rotate(0deg); }
-            2% { opacity: 0.8; }
-            4% { opacity: 0.2; }
-            5% { opacity: 0.8; }
-            100% { opacity: 0.4; -o-transform: rotate(360deg); }
-        }
-        @-o-keyframes orbit-counter-clock-wise {
-            from { -o-transform: rotate(360deg); } to { -o-transform: rotate(0deg); }
-        }
-        @-ms-keyframes orbit-clock-wise {
-            0% { opacity: 0.4; -ms-transform: rotate(0deg); }
-            2% { opacity: 0.8; }
-            4% { opacity: 0.2; }
-            5% { opacity: 0.8; }
-            100% { opacity: 0.4; -ms-transform: rotate(360deg); }
-        }
-        @-ms-keyframes orbit-counter-clock-wise {
-            from { -ms-transform: rotate(360deg); } to { -ms-transform: rotate(0deg); }
         }
         @keyframes orbit-clock-wise {
             0% { opacity: 0.4; transform: rotate(0deg); }
-            2% { opacity: 0.8; }
-            4% { opacity: 0.2; }
-            5% { opacity: 0.8; }
+            2% { opacity: 0.8; } 4% { opacity: 0.2; } 5% { opacity: 0.8; }
             100% { opacity: 0.4; transform: rotate(360deg); }
         }
         @keyframes orbit-counter-clock-wise {
@@ -207,11 +131,42 @@
         .hero p { letter-spacing: 8px; color: var(--rose-gold); font-size: 1rem; text-transform: uppercase; margin-bottom: 5px;}
         .hero h1 { font-family: 'Cinzel', serif; font-size: 5rem; margin: 0 0 10px 0; text-shadow: 0 0 30px rgba(255,255,255,0.3); letter-spacing: 5px;}
 
+        /* --- ACCESO VIP (NUEVO) --- */
+        .login-container {
+            background: var(--cristal); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--borde-cristal); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            border-radius: 20px; padding: 40px; max-width: 450px; margin: 0 auto 40px auto;
+            text-align: center; position: relative; z-index: 10; width: 90%;
+        }
+        .login-input {
+            width: 80%; padding: 12px; margin: 20px 0; border-radius: 10px; border: 1px solid var(--rose-gold);
+            background: rgba(0,0,0,0.5); color: white; text-align: center; text-transform: uppercase; font-size: 1.2rem;
+            font-family: 'Montserrat', sans-serif; outline: none; letter-spacing: 2px;
+        }
+        .login-input:focus { box-shadow: 0 0 10px var(--rose-gold); }
+        
+        .zona-pases-lila {
+            background: rgba(183, 110, 121, 0.15); /* Fondo sutil rose-gold/lila */
+            border: 2px dashed var(--rose-gold);
+            border-radius: 20px; padding: 30px; max-width: 450px; margin: 0 auto 40px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center;
+            display: none; /* Oculto hasta poner el código */
+            z-index: 10; position: relative; width: 90%;
+            backdrop-filter: blur(10px);
+        }
+        .circulo-pases {
+            background: var(--rose-gold); color: var(--lila-profundo);
+            width: 80px; height: 80px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; font-weight: bold; margin: 20px auto;
+            box-shadow: 0 0 20px var(--rose-gold);
+        }
+
         /* --- BOTONES Y TARJETAS --- */
         .btn-lujo {
             display: inline-block; padding: 12px 35px; margin-top: 15px; font-size: 0.85rem; letter-spacing: 2px;
             color: var(--rose-gold); border: 1px solid var(--rose-gold); text-decoration: none; border-radius: 30px;
-            text-transform: uppercase; transition: all 0.3s ease;
+            text-transform: uppercase; transition: all 0.3s ease; background: transparent; cursor: pointer;
         }
         .btn-lujo:hover { background: var(--rose-gold); color: var(--lila-profundo); box-shadow: 0 0 15px var(--rose-gold); }
 
@@ -290,7 +245,7 @@
     </div>
 
     <audio id="bg-music" loop preload="auto">
-        <source src="musica-bts.mp3" type="audio/mpeg">
+        <source src="BTS-MAKE-IT-RIGHT-guitar-ver.mp3" type="audio/mpeg">
     </audio>
 
     <div id="magia"></div>
@@ -301,6 +256,29 @@
         <p class="fade-in" style="transition-delay: 0.4s;">24 . OCTUBRE . 2026</p>
     </header>
 
+    <section id="seccion-acceso" style="padding-top: 0;">
+        
+        <div id="login-seccion" class="login-container fade-in">
+            <h3 style="color: var(--rose-gold); font-family: 'Cinzel', serif; margin-top: 0;">🎟️ Acceso VIP</h3>
+            <p style="font-weight: 300; font-size: 0.95rem;">Ingresa tu código de invitación para ver tus pases:</p>
+            <input type="text" id="codigoInput" class="login-input" placeholder="Ej: ZOE-123">
+            <br>
+            <button onclick="validarInvitacion()" class="btn-lujo">Ver mis pases</button>
+            <p id="mensajeError" style="color: #ff6b6b; display: none; margin-top: 15px; font-size: 0.85rem; letter-spacing: 1px;">❌ Código no encontrado. Verifica tu invitación.</p>
+        </div>
+
+        <div id="boleto-digital" class="zona-pases-lila">
+            <p style="letter-spacing: 3px; font-size: 0.8rem; color: #ccc; text-transform: uppercase;">Invitación especial para:</p>
+            <h2 id="textoBienvenida" style="color: var(--blanco); font-family: 'Cinzel', serif; margin-bottom: 20px;"></h2>
+            <hr style="border-color: var(--rose-gold); opacity: 0.3;">
+            <p style="margin-top: 20px; font-weight: 300;">Pases reservados en tu honor:</p>
+            <div class="circulo-pases">
+                <span id="numeroPases">0</span>
+            </div>
+            <p style="letter-spacing: 3px; font-weight: 600; font-size: 0.9rem;">PASES PERSONALES</p>
+        </div>
+
+    </section>
     <section class="seccion-oscura">
         <div class="fade-in" style="max-width: 600px; margin: auto; font-style: italic; font-size: 1.2rem; color: #ccc; line-height: 1.8;">
             <p>"Incluso si me caigo y me lastimo, seguiré corriendo hacia mis sueños"</p>
@@ -387,6 +365,43 @@
     </footer>
 
     <script>
+        // ==========================================
+        // BASE DE DATOS DE INVITADOS (CÓDIGOS)
+        // ==========================================
+        const baseDatosInvitados = {
+            "MARG-2": { familia: "Margarita", pases: 2 },
+            "MARI-2": { familia: "Maribel", pases: 2 },
+            "FRAN-1": { familia: "Francisco", pases: 1 },
+            "LUIS-3": { familia: "Luis H", pases: 3 },
+            "NORA-3": { familia: "Nora", pases: 3 },
+            "KARI-8": { familia: "Karime", pases: 8 },
+            "AZ-8":   { familia: "AZ", pases: 8 }
+            // Agrega aquí los demás códigos siguiendo este mismo formato
+        };
+
+        function validarInvitacion() {
+            const codigo = document.getElementById('codigoInput').value.toUpperCase().trim();
+            const mensajeError = document.getElementById('mensajeError');
+            
+            if (baseDatosInvitados[codigo]) {
+                // Ocultar formulario, mostrar pases
+                document.getElementById('login-seccion').style.display = 'none';
+                document.getElementById('boleto-digital').style.display = 'block';
+                mensajeError.style.display = 'none';
+                
+                // Llenar HTML con los datos
+                document.getElementById('textoBienvenida').innerText = "Familia " + baseDatosInvitados[codigo].familia;
+                document.getElementById('numeroPases').innerText = baseDatosInvitados[codigo].pases;
+                
+                // Disparar un poco de magia extra al descubrir los pases
+                iniciarEfectos();
+            } else {
+                // Mostrar error si no existe
+                mensajeError.style.display = 'block';
+            }
+        }
+        // ==========================================
+
         function abrirInvitacion() {
             document.body.classList.remove('no-scroll');
             document.getElementById('bg-music').play().catch(e => console.log(e));
@@ -397,7 +412,6 @@
             }, 300);
             setTimeout(() => {
                 document.getElementById('splash-screen').style.display = 'none';
-                iniciarEfectos();
             }, 1800);
         }
 
